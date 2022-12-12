@@ -1,17 +1,21 @@
 <?php
 /**
- * Plugin Name:       Rss Block
- * Description:       Example block scaffolded with Create Block tool.
+ * Plugin Name:       RSS Block
+ * Plugin URI:        https://github.com/cr0ybot/rss-block
+ * Description:       Advanced RSS feed block with configurable child blocks, similar to the Query Loop block.
  * Requires at least: 6.1
  * Requires PHP:      7.0
  * Version:           0.1.0
- * Author:            The WordPress Contributors
- * License:           GPL-2.0-or-later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Author:            Cory Hughart
+ * Author URI:        https://coryhughart.com
+ * License:           GPL-3.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       rss-block
  *
- * @package           create-block
+ * @package           rss-block
  */
+
+namespace RSSBlock;
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -20,7 +24,9 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_rss_block_block_init() {
-	register_block_type( __DIR__ . '/build' );
+function register_blocks() {
+	foreach ( glob( get_template_directory() . '/build/blocks/*', GLOB_ONLYDIR ) as $block_dir ) {
+		register_block_type( $block_dir );
+	}
 }
-add_action( 'init', 'create_block_rss_block_block_init' );
+add_action( 'init', __NAMESPACE__ . '\\register_blocks' );

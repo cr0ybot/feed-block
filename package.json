@@ -1,9 +1,12 @@
 {
 	"name": "rss-block",
 	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
-	"license": "GPL-2.0-or-later",
+	"description": "Advanced RSS feed block with configurable child blocks, similar to the Query Loop block.",
+	"author": {
+		"name": "Cory Hughart",
+		"url": "https://coryhughart.com"
+	],
+	"license": "GPL-3.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build --webpack-copy-php",
