@@ -7,12 +7,32 @@
 	"category": "widgets",
 	"icon": "rss",
 	"description": "Advanced RSS feed with configurable child blocks.",
+	"keywords": [
+		"rss",
+		"feed",
+		"embed"
+	],
+	"attributes": {
+		"feedURL": {
+			"type": "string",
+			"default": ""
+		},
+		"displayLayout": {
+			"type": "object",
+			"default": {
+				"type": "list"
+			}
+		}
+	},
+	"providesContext": {
+		"feedURL": "feedURL",
+		"displayLayout": "displayLayout"
+	},
 	"supports": {
 		"html": false
 	},
 	"textdomain": "rss-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
-	"style": "file:./style.css",
-	"render": "file:./render.php"
+	"style": "file:./style.css"
 }
