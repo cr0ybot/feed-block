@@ -5,7 +5,7 @@
 	"author": {
 		"name": "Cory Hughart",
 		"url": "https://coryhughart.com"
-	],
+	},
 	"license": "GPL-3.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
