@@ -25,8 +25,18 @@ namespace RSSBlock;
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function register_blocks() {
-	foreach ( glob( get_template_directory() . '/build/blocks/*', GLOB_ONLYDIR ) as $block_dir ) {
-		register_block_type( $block_dir );
+	foreach ( glob( plugin_dir_path( __FILE__ ) . 'build/blocks/*', GLOB_ONLYDIR ) as $block_dir ) {
+		// Extra args for specific blocks.
+		$block_args = array(
+			'rss-item-template' => array(
+				'skip_inner_blocks' => true,
+			),
+		);
+		$args       = array();
+		if ( isset( $block_args[ basename( $block_dir ) ] ) ) {
+			$args = $block_args[ basename( $block_dir ) ];
+		}
+		register_block_type( $block_dir, $args );
 	}
 }
 add_action( 'init', __NAMESPACE__ . '\\register_blocks' );
