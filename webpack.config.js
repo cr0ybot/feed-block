@@ -36,9 +36,21 @@ module.exports = {
 	},
 	entry: {
 		'blocks/rss-feed': './src/blocks/rss-feed',
+		'blocks/rss-item-template': './src/blocks/rss-item-template',
 	},
 	output: {
 		...defaultConfig.output,
 		filename: '[name]/index.js',
+	},
+	resolve: {
+		...defaultConfig.resolve,
+		fallback: {
+			...defaultConfig.resolve.fallback,
+			http: require.resolve( 'stream-http' ),
+			https: require.resolve( 'https-browserify' ),
+			stream: require.resolve( 'stream-browserify' ),
+			url: require.resolve( 'url/' ),
+			timers: require.resolve( 'timers-browserify' ),
+		},
 	},
 };

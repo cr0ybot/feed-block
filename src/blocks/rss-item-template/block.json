@@ -1,0 +1,19 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "rss-block/rss-item-template",
+	"version": "0.1.0",
+	"title": "RSS Item Template",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "Contains the block elements used to render an RSS feed item, like the title, description, link, and more.",
+	"usesContext": [ "feedURL", "itemsToShow", "displayLayout" ],
+	"supports": {
+		"html": false
+	},
+	"textdomain": "rss-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}
