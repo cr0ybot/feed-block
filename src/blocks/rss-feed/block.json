@@ -31,8 +31,7 @@
 	"providesContext": {
 		"feedURL": "feedURL",
 		"itemsToShow": "itemsToShow",
-		"displayLayout": "displayLayout",
-		"tagName": "tagName"
+		"displayLayout": "displayLayout"
 	},
 	"supports": {
 		"html": false
