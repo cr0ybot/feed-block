@@ -7,7 +7,29 @@
 	"category": "widgets",
 	"description": "Displays the title of an RSS item.",
 	"parent": [ "rss-block/rss-item-template" ],
-	"usesContext": [ "title" ],
+	"usesContext": [ "title", "url" ],
+	"attributes": {
+		"textAlign": {
+			"type": "string"
+		},
+		"level": {
+			"type": "number",
+			"default": 2
+		},
+		"isLink": {
+			"type": "boolean",
+			"default": false
+		},
+		"rel": {
+			"type": "string",
+			"attribute": "rel",
+			"default": ""
+		},
+		"linkTarget": {
+			"type": "string",
+			"default": "_self"
+		}
+	},
 	"supports": {
 		"align": [ "wide", "full" ],
 		"html": false,
