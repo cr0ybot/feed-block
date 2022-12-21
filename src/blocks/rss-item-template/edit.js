@@ -93,12 +93,6 @@ export default function Edit( {
 	);
 
 	useEffect( () => {
-		/*
-		const formData = new FormData();
-		formData.append( 'action', 'rss_block_get_feed' );
-		formData.append( 'url', feedURL );
-		*/
-
 		// Fetch feed JSON from AJAX endpoint.
 		const fetchFeed = async () => {
 			const response = await fetch( ajaxurl, {
