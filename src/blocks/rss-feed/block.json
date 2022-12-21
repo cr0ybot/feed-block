@@ -34,7 +34,9 @@
 		"displayLayout": "displayLayout"
 	},
 	"supports": {
-		"html": false
+		"align": [ "wide", "full" ],
+		"html": false,
+		"__experimentalLayout": true
 	},
 	"textdomain": "rss-block",
 	"editorScript": "file:./index.js",
