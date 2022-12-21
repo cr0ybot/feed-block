@@ -34,7 +34,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $align_cla
 
 printf(
 	'<%1$s %2$s>%3$s</%1$s>',
-	$tag,
-	$wrapper_attributes,
-	$title
+	$tag, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	$wrapper_attributes, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	$title // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 );
