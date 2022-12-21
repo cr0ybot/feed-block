@@ -16,8 +16,7 @@ import { useSelect } from '@wordpress/data';
 import { memo, useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-
-const TEMPLATE = [ [ 'core/paragraph', { placeholder: 'Item Template' } ] ];
+const TEMPLATE = [ [ 'rss-block/rss-item-title' ] ];
 
 function RSSItemTemplateInnerBlocks() {
 	const innerBlocksProps = useInnerBlocksProps(
@@ -36,7 +35,7 @@ function RSSItemTemplateBlockPreview( {
 	const blockPreviewProps = useBlockPreview( {
 		blocks,
 		props: {
-			className: 'wp-block-rss-item',
+			className: 'wp-block-rss-block-rss-item',
 		},
 	} );
 
@@ -151,7 +150,6 @@ export default function Edit( {
 					( activeBlockContextId || itemContexts[ 0 ]?.id ) ? (
 						<RSSItemTemplateInnerBlocks />
 					) : null }
-					{ JSON.stringify( item ) }
 					<MemoizedRSSItemTemplateBlockPreview
 						blocks={ blocks }
 						blockContextId={ item.id }

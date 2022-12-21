@@ -5,7 +5,39 @@
 //
 
 .wp-block-rss-block-rss-item-template {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+	margin-top: 0;
+	margin-bottom: 0;
+	max-width: 100%;
+	list-style: none;
+	padding: 0;
+
+	// Unset background colors that can be inherited from Global Styles with extra specificity.
+	&.wp-block-post-template {
+		background: none;
+	}
+
+	&.is-flex-container {
+		flex-direction: row;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.25em;
+
+		li {
+			margin: 0;
+			width: 100%;
+		}
+
+		// TODO: Ideally, do this without a hardcoded breakpoint.
+		@media (min-width: 600px) {
+			@for $i from 2 through 6 {
+				&.is-flex-container.columns-#{ $i } > li {
+					width: calc((100% / #{$i}) - 1.25em + (1.25em / #{$i}));
+				}
+			}
+		}
+	}
+}
+
+.wp-block-rss-block-rss-item {
+	display: block;
 }
