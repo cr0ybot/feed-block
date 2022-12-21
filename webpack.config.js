@@ -37,6 +37,7 @@ module.exports = {
 	entry: {
 		'blocks/rss-feed': './src/blocks/rss-feed',
 		'blocks/rss-item-template': './src/blocks/rss-item-template',
+		'blocks/rss-item-title': './src/blocks/rss-item-title',
 	},
 	output: {
 		...defaultConfig.output,
