@@ -16,7 +16,6 @@ import { useSelect } from '@wordpress/data';
 import { memo, useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-import './editor.scss';
 
 const TEMPLATE = [ [ 'core/paragraph', { placeholder: 'Item Template' } ] ];
 

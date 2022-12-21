@@ -5,7 +5,6 @@
 	"version": "0.1.0",
 	"title": "RSS Item Template",
 	"category": "widgets",
-	"icon": "smiley",
 	"description": "Contains the block elements used to render an RSS feed item, like the title, description, link, and more.",
 	"usesContext": [ "feedURL", "itemsToShow", "displayLayout" ],
 	"supports": {
