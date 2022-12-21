@@ -58,11 +58,15 @@ function get_feed( $url ) {
 				'id'                 => $feed_item->get_id(),
 				'url'                => $feed_item->get_permalink(),
 				// 'external_url' => $item->get_permalink(), // Doesn't really have an RSS equivalent.
-				'title'              => $feed_item->get_title(),
+				'title'              => wp_strip_all_tags(
+					wp_specialchars_decode(
+						$feed_item->get_title()
+					)
+				),
 				'content_html'       => $feed_item->get_content(),
 				'content_html_noimg' => $feed_item->get_content(),
-				'content_text'       => wp_strip_all_tags( $feed_item->get_content() ),
-				'summary'            => wp_strip_all_tags( $feed_item->get_description() ),
+				'content_text'       => wp_strip_all_tags( wp_specialchars_decode( $feed_item->get_content() ) ),
+				'summary'            => wp_strip_all_tags( wp_specialchars_decode( $feed_item->get_description() ) ),
 				'image'              => '',
 				'date_published'     => $feed_item->get_date( 'c' ),
 				'date_modified'      => $feed_item->get_updated_date( 'c' ),
