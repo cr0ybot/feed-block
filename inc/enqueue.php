@@ -1,11 +1,11 @@
 <?php
 /**
- * RSS Block enqueue scripts and styles.
+ * Feed Loop enqueue scripts and styles.
  *
- * @package rss-block
+ * @package feed-loop
  */
 
-namespace RSSBlock\Enqueue;
+namespace FeedLoop\Enqueue;
 
 /**
  * Block script localizations.
@@ -13,9 +13,9 @@ namespace RSSBlock\Enqueue;
 function localize_scripts() {
 	$localize = array(
 		// 'ajax_url' => admin_url( 'admin-ajax.php' ),
-		'nonce' => wp_create_nonce( 'rss-block' ),
+		'nonce' => wp_create_nonce( 'feed-loop' ),
 	);
 
-	wp_localize_script( 'rss-block-rss-feed-editor-script', 'rssBlock', $localize );
+	wp_localize_script( 'feed-loop-feed-loop-editor-script', 'feedLoop', $localize );
 }
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\localize_scripts' );

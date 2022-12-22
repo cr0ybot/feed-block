@@ -1,7 +1,7 @@
 {
-	"name": "rss-block",
+	"name": "feed-loop-block",
 	"version": "0.1.0",
-	"description": "Advanced RSS feed block with configurable child blocks, similar to the Query Loop block.",
+	"description": "Advanced RSS and Atom feed block with configurable child blocks, similar to the Query Loop block.",
 	"author": {
 		"name": "Cory Hughart",
 		"url": "https://coryhughart.com"

@@ -1,5 +1,5 @@
 /**
- * Block: rss-item-title, edit.
+ * Block: feed-item-title, edit.
  */
 
 import classnames from 'classnames';
@@ -28,7 +28,7 @@ export default function Edit( {
 		} ),
 	} );
 	const titleContent =
-		title && title !== '' ? unescape( title ) : __( 'RSS Item Title' );
+		title && title !== '' ? unescape( title ) : __( 'Feed Item Title' );
 	let titleElement = <Tag { ...blockProps }>{ titleContent }</Tag>;
 	if ( isLink && url ) {
 		titleElement = (

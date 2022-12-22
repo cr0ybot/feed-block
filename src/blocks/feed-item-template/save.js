@@ -1,5 +1,5 @@
 /**
- * Block: rss-item-template, save.
+ * Block: feed-item-template, save.
  */
 
 import { InnerBlocks } from '@wordpress/block-editor';

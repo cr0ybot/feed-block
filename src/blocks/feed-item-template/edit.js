@@ -1,5 +1,5 @@
 /**
- * Block: rss-item-template, edit.
+ * Block: feed-item-template, edit.
  */
 
 import classnames from 'classnames';
@@ -16,9 +16,9 @@ import { useSelect } from '@wordpress/data';
 import { memo, useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-const TEMPLATE = [ [ 'rss-block/rss-item-title' ] ];
+const TEMPLATE = [ [ 'feed-loop/feed-item-title' ] ];
 
-function RSSItemTemplateInnerBlocks() {
+function FeedItemTemplateInnerBlocks() {
 	const innerBlocksProps = useInnerBlocksProps(
 		{ className: 'wp-block-post' },
 		{ template: TEMPLATE }
@@ -26,7 +26,7 @@ function RSSItemTemplateInnerBlocks() {
 	return <li { ...innerBlocksProps } />;
 }
 
-function RSSItemTemplateBlockPreview( {
+function FeedItemTemplateBlockPreview( {
 	blocks,
 	blockContextId,
 	isHidden,
@@ -35,7 +35,7 @@ function RSSItemTemplateBlockPreview( {
 	const blockPreviewProps = useBlockPreview( {
 		blocks,
 		props: {
-			className: 'wp-block-rss-block-rss-item',
+			className: 'wp-block-feed-loop-feed-item',
 		},
 	} );
 
@@ -60,7 +60,9 @@ function RSSItemTemplateBlockPreview( {
 	);
 }
 
-const MemoizedRSSItemTemplateBlockPreview = memo( RSSItemTemplateBlockPreview );
+const MemoizedFeedItemTemplateBlockPreview = memo(
+	FeedItemTemplateBlockPreview
+);
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -102,9 +104,9 @@ export default function Edit( {
 					'Content-Type': 'application/x-www-form-urlencoded',
 				},
 				body: new URLSearchParams( {
-					action: 'rss_block_get_feed',
+					action: 'feed_loop_get_feed',
 					url: feedURL,
-					_ajax_nonce: rssBlock.nonce,
+					_ajax_nonce: feedLoop.nonce,
 				} ),
 			} );
 			const data = await response.json();
@@ -142,9 +144,9 @@ export default function Edit( {
 				<BlockContextProvider key={ item.id } value={ item }>
 					{ item.id ===
 					( activeBlockContextId || itemContexts[ 0 ]?.id ) ? (
-						<RSSItemTemplateInnerBlocks />
+						<FeedItemTemplateInnerBlocks />
 					) : null }
-					<MemoizedRSSItemTemplateBlockPreview
+					<MemoizedFeedItemTemplateBlockPreview
 						blocks={ blocks }
 						blockContextId={ item.id }
 						setActiveBlockContextId={ setActiveBlockContextId }

@@ -1,5 +1,5 @@
 /**
- * Block: rss-feed, save.
+ * Block: feed-loop, save.
  */
 
 import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';

@@ -1,10 +1,8 @@
 /**
- * Block: rss-feed, edit.rss-content.
+ * Block: feed-loop, edit.feed-content.
  */
 
-import { useSelect, useDispatch } from '@wordpress/data';
-import { useInstanceId } from '@wordpress/compose';
-import { useEffect } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 import {
 	BlockControls,
 	InspectorControls,
@@ -22,26 +20,22 @@ import {
 import { __ } from '@wordpress/i18n';
 import { edit, list, grid } from '@wordpress/icons';
 
-const TEMPLATE = [ [ 'rss-block/rss-item-template' ] ];
+const TEMPLATE = [ [ 'feed-loop/feed-item-template' ] ];
 const DEFAULT_MIN_ITEMS = 1;
 const DEFAULT_MAX_ITEMS = 20;
 
-export default function RSSContent( {
+export default function FeedContent( {
 	attributes,
 	setAttributes,
 	setIsEditing,
-	name,
-	clientId,
 } ) {
 	const {
-		feedURL,
 		itemsToShow,
 		displayLayout,
 		tagName: Tag = 'div',
 		layout = {},
 	} = attributes;
 
-	const instanceId = useInstanceId( RSSContent );
 	const { themeSupportsLayout } = useSelect( ( select ) => {
 		const { getSettings } = select( blockEditorStore );
 		return { themeSupportsLayout: getSettings()?.supportsLayout };
@@ -67,7 +61,7 @@ export default function RSSContent( {
 	const toolbarControls = [
 		{
 			icon: edit,
-			title: __( 'Edit RSS URL' ),
+			title: __( 'Edit Feed URL' ),
 			onClick: () => setIsEditing( true ),
 		},
 		{
@@ -91,7 +85,7 @@ export default function RSSContent( {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'RSS Feed Settings', 'rss-block' ) }>
+				<PanelBody title={ __( 'Feed Loop Settings', 'feed-loop' ) }>
 					<RangeControl
 						__nextHasNoMarginBottom
 						label={ __( 'Number of items' ) }

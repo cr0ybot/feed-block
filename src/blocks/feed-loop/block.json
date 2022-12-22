@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "rss-block/rss-feed",
+	"name": "feed-loop/feed-loop",
 	"version": "0.1.0",
-	"title": "RSS Feed",
+	"title": "Feed Loop",
 	"category": "widgets",
 	"icon": "rss",
-	"description": "Advanced RSS feed with configurable child blocks.",
-	"keywords": [ "rss", "feed", "embed" ],
+	"description": "Advanced RSS & Atom feed block with configurable child blocks.",
+	"keywords": [ "rss", "atom", "feed", "embed", "loop" ],
 	"attributes": {
 		"feedURL": {
 			"type": "string",
@@ -38,7 +38,7 @@
 		"html": false,
 		"__experimentalLayout": true
 	},
-	"textdomain": "rss-block",
+	"textdomain": "feed-loop",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
 	"style": "file:./style.css"

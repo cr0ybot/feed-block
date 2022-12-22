@@ -1,10 +1,10 @@
 <?php
 /**
- * Block: rss-item-title, render.
+ * Block: feed-item-title, render.
  *
  * Global vars: $attributes, $content, $block.
  *
- * @package rss-item-title
+ * @package feed-item-title
  */
 
 if ( ! isset( $block->context['title'] ) ) {

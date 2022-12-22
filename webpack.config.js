@@ -35,9 +35,9 @@ module.exports = {
 		},
 	},
 	entry: {
-		'blocks/rss-feed': './src/blocks/rss-feed',
-		'blocks/rss-item-template': './src/blocks/rss-item-template',
-		'blocks/rss-item-title': './src/blocks/rss-item-title',
+		'blocks/feed-loop': './src/blocks/feed-loop',
+		'blocks/feed-item-template': './src/blocks/feed-item-template',
+		'blocks/feed-item-title': './src/blocks/feed-item-title',
 	},
 	output: {
 		...defaultConfig.output,

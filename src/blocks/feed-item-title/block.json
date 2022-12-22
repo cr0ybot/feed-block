@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "rss-block/rss-item-title",
+	"name": "feed-loop/feed-item-title",
 	"version": "0.1.0",
-	"title": "RSS Item Title",
+	"title": "Feed Item Title",
 	"category": "widgets",
-	"description": "Displays the title of an RSS item.",
-	"parent": [ "rss-block/rss-item-template" ],
+	"description": "Displays the title of a feed item.",
+	"parent": [ "feed-loop/feed-item-template" ],
 	"usesContext": [ "title", "url" ],
 	"attributes": {
 		"textAlign": {
@@ -62,7 +62,7 @@
 			}
 		}
 	},
-	"textdomain": "rss-block",
+	"textdomain": "feed-loop",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
 	"style": "file:./style.css",

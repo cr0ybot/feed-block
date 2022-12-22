@@ -1,5 +1,5 @@
 /**
- * Block: rss-item-template.
+ * Block: feed-item-template.
  */
 
 import { registerBlockType } from '@wordpress/blocks';

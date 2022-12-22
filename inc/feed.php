@@ -1,14 +1,14 @@
 <?php
 /**
- * RSS Block feed utilities.
+ * Feed Loop feed utilities.
  *
- * @package rss-block
+ * @package feed-loop
  */
 
-namespace RSSBlock\Feed;
+namespace FeedLoop\Feed;
 
 /**
- * Fetches an RSS feed contents and returns a JSONFeed-compatible array.
+ * Fetches an Feed Loop contents and returns a JSONFeed-compatible array.
  *
  * @param string $url The feed URL.
  * @return array
@@ -126,7 +126,7 @@ function get_feed( $url ) {
 			 * @param \SimplePie_Item $feed_item The feed item object.
 			 * @return array
 			 */
-			$json['items'][] = apply_filters( 'rss_block_feed_item', $item, $feed_item );
+			$json['items'][] = apply_filters( 'feed_loop_feed_item', $item, $feed_item );
 		}
 	}
 
@@ -139,5 +139,5 @@ function get_feed( $url ) {
 	 * @param \SimplePie $feed The feed object.
 	 * @return array
 	 */
-	return apply_filters( 'rss_block_feed', $json, $feed );
+	return apply_filters( 'feed_loop_feed', $json, $feed );
 }
