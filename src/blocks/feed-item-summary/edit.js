@@ -79,8 +79,6 @@ export default function Edit( {
 		/>
 	);
 
-	console.log( { summaryLength } );
-
 	const content = constrainLength
 		? trimWords( summary, summaryLength )
 		: summary;
@@ -135,7 +133,6 @@ export default function Edit( {
 							value={ summaryLength }
 							initialPosition={ 55 }
 							onChange={ ( nextLength ) => {
-								console.log( { nextLength } );
 								setAttributes( {
 									summaryLength: nextLength,
 								} );
