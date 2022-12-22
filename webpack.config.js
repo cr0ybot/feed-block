@@ -22,10 +22,8 @@ module.exports = {
 					chunks: 'all',
 					enforce: true,
 					name( module, chunks, cacheGroupKey ) {
-						console.log( module, chunks, cacheGroupKey );
 						const chunkName = dirname( chunks[ 0 ].name );
 						const fileName = parse( module._identifier ).name;
-						console.log( { chunkName, fileName } );
 						return `${ dirname( chunkName ) }/${ basename(
 							chunkName
 						) }/${ fileName }`;
