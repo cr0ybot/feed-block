@@ -20,11 +20,11 @@ if ( isset( $attributes['level'] ) ) {
 $align_class_name = empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}";
 
 if ( isset( $attributes['isLink'] ) && $attributes['isLink'] && isset( $block->context['url'] ) ) {
-	$rel   = ! empty( $attributes['rel'] ) ? 'rel="' . esc_attr( $attributes['rel'] ) . '"' : '';
+	$rel   = ! empty( $block->context['rel'] ) ? 'rel="' . esc_attr( $block->context['rel'] ) . '"' : '';
 	$title = sprintf(
 		'<a href="%1$s" target="%2$s" %3$s>%4$s</a>',
 		esc_url( $block->context['url'] ),
-		esc_attr( $attributes['linkTarget'] ),
+		esc_attr( $block->context['linkTarget'] ),
 		$rel,
 		esc_html( $block->context['title'] )
 	);

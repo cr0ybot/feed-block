@@ -7,7 +7,7 @@
 	"category": "widgets",
 	"description": "Displays the summary of a feed item, similar to the Post Excerpt block.",
 	"ancestor": [ "feed-loop/feed-item-template" ],
-	"usesContext": [ "summary", "url" ],
+	"usesContext": [ "summary", "url", "rel", "linkTarget" ],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
@@ -29,7 +29,7 @@
 		},
 		"showMoreOnNewLine": {
 			"type": "boolean",
-			"default": true
+			"default": false
 		}
 	},
 	"supports": {

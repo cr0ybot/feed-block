@@ -7,7 +7,7 @@
 	"category": "widgets",
 	"description": "Displays the title of a feed item,similar to the Post Title block.",
 	"ancestor": [ "feed-loop/feed-item-template" ],
-	"usesContext": [ "title", "url" ],
+	"usesContext": [ "title", "url", "rel", "linkTarget" ],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
@@ -19,15 +19,6 @@
 		"isLink": {
 			"type": "boolean",
 			"default": false
-		},
-		"rel": {
-			"type": "string",
-			"attribute": "rel",
-			"default": ""
-		},
-		"linkTarget": {
-			"type": "string",
-			"default": "_self"
 		}
 	},
 	"supports": {

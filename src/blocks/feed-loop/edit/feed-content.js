@@ -14,6 +14,8 @@ import {
 import {
 	PanelBody,
 	RangeControl,
+	TextControl,
+	ToggleControl,
 	ToolbarGroup,
 	SelectControl,
 } from '@wordpress/components';
@@ -34,6 +36,8 @@ export default function FeedContent( {
 		displayLayout,
 		tagName: Tag = 'div',
 		layout = {},
+		rel,
+		linkTarget,
 	} = attributes;
 
 	const { themeSupportsLayout } = useSelect( ( select ) => {
@@ -121,6 +125,28 @@ export default function FeedContent( {
 							) }
 						</>
 					) }
+				</PanelBody>
+				<PanelBody title={ __( 'Link Settings' ) }>
+					<p className="description">
+						These link settings apply to any feed-specific link
+						elements within the Feed Loop.
+					</p>
+					<ToggleControl
+						label={ __( 'Open in new tab' ) }
+						checked={ linkTarget === '_blank' }
+						onChange={ ( nextIsNewTab ) => {
+							setAttributes( {
+								linkTarget: nextIsNewTab ? '_blank' : '_self',
+							} );
+						} }
+					/>
+					<TextControl
+						label={ __( 'Link rel' ) }
+						value={ rel }
+						onChange={ ( nextRel ) => {
+							setAttributes( { rel: nextRel } );
+						} }
+					/>
 				</PanelBody>
 			</InspectorControls>
 			<InspectorControls __experimentalGroup="advanced">

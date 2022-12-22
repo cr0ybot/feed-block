@@ -26,12 +26,23 @@
 		"tagName": {
 			"type": "string",
 			"default": "div"
+		},
+		"rel": {
+			"type": "string",
+			"attribute": "rel",
+			"default": "nofollow noopener noreferrer"
+		},
+		"linkTarget": {
+			"type": "string",
+			"default": "_blank"
 		}
 	},
 	"providesContext": {
 		"feedURL": "feedURL",
 		"itemsToShow": "itemsToShow",
-		"displayLayout": "displayLayout"
+		"displayLayout": "displayLayout",
+		"rel": "rel",
+		"linkTarget": "linkTarget"
 	},
 	"supports": {
 		"align": [ "wide", "full" ],

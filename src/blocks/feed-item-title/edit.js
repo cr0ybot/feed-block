@@ -11,15 +11,15 @@ import {
 	InspectorControls,
 	useBlockProps,
 } from '@wordpress/block-editor';
-import { ToggleControl, TextControl, PanelBody } from '@wordpress/components';
+import { ToggleControl, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import HeadingLevelDropdown from './heading-level-dropdown';
 
 export default function Edit( {
-	attributes: { level, textAlign, isLink, rel, linkTarget },
+	attributes: { level, textAlign, isLink },
 	setAttributes,
-	context: { title, url },
+	context: { title, url, rel, linkTarget },
 } ) {
 	const Tag = 0 === level ? 'p' : `h${ level }`;
 	const blockProps = useBlockProps( {
@@ -62,36 +62,18 @@ export default function Edit( {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Link Settings' ) }>
+				<PanelBody title={ __( 'Link Settings', 'feed-loop' ) }>
 					<ToggleControl
-						label={ __( 'Make title a link' ) }
+						label={ __( 'Make title a link', 'feed-loop' ) }
+						description={ __(
+							'Link settings can be found on the main Feed Loop block.',
+							'feed-loop'
+						) }
 						checked={ isLink }
 						onChange={ ( nextIsLink ) => {
 							setAttributes( { isLink: nextIsLink } );
 						} }
 					/>
-					{ isLink && (
-						<>
-							<ToggleControl
-								label={ __( 'Open in new tab' ) }
-								checked={ linkTarget === '_blank' }
-								onChange={ ( nextIsNewTab ) => {
-									setAttributes( {
-										linkTarget: nextIsNewTab
-											? '_blank'
-											: '_self',
-									} );
-								} }
-							/>
-							<TextControl
-								label={ __( 'Link rel' ) }
-								value={ rel }
-								onChange={ ( nextRel ) => {
-									setAttributes( { rel: nextRel } );
-								} }
-							/>
-						</>
-					) }
 				</PanelBody>
 			</InspectorControls>
 			{ titleElement }

@@ -18,9 +18,12 @@ if ( $attributes['constrainLength'] ) {
 
 $readMoreLink = '';
 if ( $attributes['showMore'] && ! empty( $attributes['moreText'] ) ) {
+	$rel   = ! empty( $block->context['rel'] ) ? 'rel="' . esc_attr( $block->context['rel'] ) . '"' : '';
 	$readMoreLink = sprintf(
-		'<a href="%1$s" class="wp-block-feed-loop-feed-item-summary__more-link">%2$s</a>',
+		'<a href="%1$s" class="wp-block-feed-loop-feed-item-summary__more-link" target="%2$s" %3$s>%4$s</a>',
 		esc_url( $block->context['url'] ),
+		esc_attr( $block->context['linkTarget'] ),
+		$rel,
 		esc_html( $attributes['moreText'] )
 	);
 }
