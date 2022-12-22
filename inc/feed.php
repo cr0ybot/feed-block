@@ -98,7 +98,8 @@ function get_feed( $url ) {
 			// TODO: handle enclosures?
 			$image = false;
 			$dom   = new \DOMDocument();
-			$dom->loadHTML( $feed_item->get_content() );
+			// Must convert encoding, or otherwise will be interpreted as ISO-8859-1 https://stackoverflow.com/a/28502287/900971
+			$dom->loadHTML( mb_convert_encoding( $feed_item->get_content(), 'HTML-ENTITIES', $feed->get_encoding() ?? 'UTF-8' ) );
 			$images = $dom->getElementsByTagName( 'img' );
 			if ( $images->length ) {
 				$image = $images->item( 0 )->getAttribute( 'src' );
