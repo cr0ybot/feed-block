@@ -6,7 +6,7 @@
 	"title": "Feed Item Title",
 	"category": "widgets",
 	"description": "Displays the title of a feed item,similar to the Post Title block.",
-	"parent": [ "feed-loop/feed-item-template" ],
+	"ancestor": [ "feed-loop/feed-item-template" ],
 	"usesContext": [ "title", "url" ],
 	"attributes": {
 		"textAlign": {
