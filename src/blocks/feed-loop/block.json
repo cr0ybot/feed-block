@@ -6,7 +6,7 @@
 	"title": "Feed Loop",
 	"category": "widgets",
 	"icon": "rss",
-	"description": "Advanced RSS & Atom feed block with configurable child blocks.",
+	"description": "Advanced RSS & Atom feed block with configurable child blocks, similar to the Query Loop block.",
 	"keywords": [ "rss", "atom", "feed", "embed", "loop" ],
 	"attributes": {
 		"feedURL": {

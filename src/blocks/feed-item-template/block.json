@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"title": "Feed Item Template",
 	"category": "widgets",
-	"description": "Contains the block elements used to render a feed item, like the title, description, link, and more.",
+	"description": "Contains the block elements used to render a feed item, like the title, description, link, and more, similar to the Post Template block.",
 	"parent": [ "feed-loop/feed-loop" ],
 	"usesContext": [ "feedURL", "itemsToShow", "displayLayout" ],
 	"supports": {

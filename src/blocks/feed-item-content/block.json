@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"title": "Feed Item Content",
 	"category": "widgets",
-	"description": "Displays the content of a feed item.",
+	"description": "Displays the content of a feed item, similar to the Post Content block.",
 	"parent": [ "feed-loop/feed-item-template" ],
 	"usesContext": [ "content_html", "content_html_noimg", "content_text" ],
 	"attributes": {
