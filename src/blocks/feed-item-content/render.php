@@ -19,5 +19,5 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $align_cla
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>
-	<?php echo utf8_encode( $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>
