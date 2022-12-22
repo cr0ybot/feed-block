@@ -16,7 +16,10 @@ import { useSelect } from '@wordpress/data';
 import { memo, useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-const TEMPLATE = [ [ 'feed-loop/feed-item-title' ] ];
+const TEMPLATE = [
+	[ 'feed-loop/feed-item-title' ],
+	[ 'feed-loop/feed-item-content' ],
+];
 
 function FeedItemTemplateInnerBlocks() {
 	const innerBlocksProps = useInnerBlocksProps(

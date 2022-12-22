@@ -38,6 +38,7 @@ module.exports = {
 		'blocks/feed-loop': './src/blocks/feed-loop',
 		'blocks/feed-item-template': './src/blocks/feed-item-template',
 		'blocks/feed-item-title': './src/blocks/feed-item-title',
+		'blocks/feed-item-content': './src/blocks/feed-item-content',
 	},
 	output: {
 		...defaultConfig.output,

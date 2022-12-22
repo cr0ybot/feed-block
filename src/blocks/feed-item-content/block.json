@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "feed-loop/feed-item-content",
+	"version": "0.1.0",
+	"title": "Feed Item Content",
+	"category": "widgets",
+	"description": "Displays the content of a feed item.",
+	"parent": [ "feed-loop/feed-item-template" ],
+	"usesContext": [ "content_html", "content_html_noimg", "content_text" ],
+	"attributes": {
+		"textAlign": {
+			"type": "string"
+		},
+		"contentType": {
+			"type": "string",
+			"default": "content_html"
+		}
+	},
+	"supports": {
+		"align": [ "wide", "full" ],
+		"html": false,
+		"dimensions": {
+			"minHeight": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true,
+				"fontAppearance": true
+			}
+		}
+	},
+	"textdomain": "feed-loop",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}
