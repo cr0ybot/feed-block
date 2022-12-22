@@ -22,11 +22,6 @@
 	},
 	"dependencies": {
 		"@wordpress/icons": "^9.14.0",
-		"classnames": "^2.3.2",
-		"https-browserify": "^1.0.0",
-		"stream-browserify": "^3.0.0",
-		"stream-http": "^3.2.0",
-		"timers-browserify": "^2.0.12",
-		"url": "^0.11.0"
+		"classnames": "^2.3.2"
 	}
 }
