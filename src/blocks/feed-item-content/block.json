@@ -14,7 +14,8 @@
 		},
 		"contentType": {
 			"type": "string",
-			"default": "content_html"
+			"default": "content_html",
+			"enum": [ "content_html", "content_html_noimg", "content_text" ]
 		}
 	},
 	"supports": {
