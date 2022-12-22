@@ -15,7 +15,7 @@ module.exports = {
 			cacheGroups: {
 				...( defaultConfig?.optimization?.splitChunks?.cacheGroups ||
 					{} ),
-				// Output individual CSS files.
+				// Output individual CSS files with original filename.
 				style: {
 					type: 'css/mini-extract',
 					test: /\.(sc|sa|c)ss$/,
@@ -23,8 +23,9 @@ module.exports = {
 					enforce: true,
 					name( module, chunks, cacheGroupKey ) {
 						console.log( module, chunks, cacheGroupKey );
-						const chunkName = chunks[ 0 ].name;
+						const chunkName = dirname( chunks[ 0 ].name );
 						const fileName = parse( module._identifier ).name;
+						console.log( { chunkName, fileName } );
 						return `${ dirname( chunkName ) }/${ basename(
 							chunkName
 						) }/${ fileName }`;
@@ -32,27 +33,6 @@ module.exports = {
 				},
 				default: false,
 			},
-		},
-	},
-	entry: {
-		'blocks/feed-loop': './src/blocks/feed-loop',
-		'blocks/feed-item-template': './src/blocks/feed-item-template',
-		'blocks/feed-item-title': './src/blocks/feed-item-title',
-		'blocks/feed-item-content': './src/blocks/feed-item-content',
-	},
-	output: {
-		...defaultConfig.output,
-		filename: '[name]/index.js',
-	},
-	resolve: {
-		...defaultConfig.resolve,
-		fallback: {
-			...defaultConfig.resolve.fallback,
-			http: require.resolve( 'stream-http' ),
-			https: require.resolve( 'https-browserify' ),
-			stream: require.resolve( 'stream-browserify' ),
-			url: require.resolve( 'url/' ),
-			timers: require.resolve( 'timers-browserify' ),
 		},
 	},
 };
