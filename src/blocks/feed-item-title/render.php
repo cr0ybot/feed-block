@@ -24,7 +24,7 @@ if ( isset( $attributes['isLink'] ) && $attributes['isLink'] && isset( $block->c
 	$title = sprintf(
 		'<a href="%1$s" target="%2$s" %3$s>%4$s</a>',
 		esc_url( $block->context['url'] ),
-		esc_attr( $block->context['linkTarget'] ),
+		esc_attr( $block->context['linkTarget'] ?? '_blank' ),
 		$rel,
 		esc_html( $block->context['title'] )
 	);

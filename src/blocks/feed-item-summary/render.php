@@ -22,7 +22,7 @@ if ( $attributes['showMore'] && ! empty( $attributes['moreText'] ) ) {
 	$readMoreLink = sprintf(
 		'<a href="%1$s" class="wp-block-feed-loop-feed-item-summary__more-link" target="%2$s" %3$s>%4$s</a>',
 		esc_url( $block->context['url'] ),
-		esc_attr( $block->context['linkTarget'] ),
+		esc_attr( $block->context['linkTarget'] ?? '_blank' ),
 		$rel,
 		esc_html( $attributes['moreText'] )
 	);
