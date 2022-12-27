@@ -7,11 +7,14 @@ import classnames from 'classnames';
 import {
 	BlockControls,
 	InspectorControls,
-	ToggleControl,
 	useBlockProps,
 	__experimentalUseBorderProps as useBorderProps,
 } from '@wordpress/block-editor';
-import { PanelBody, Placeholder } from '@wordpress/components';
+import {
+	PanelBody,
+	Placeholder,
+	ToggleControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import DimensionControls from './dimension-controls';
@@ -55,9 +58,9 @@ function ImageDisplay( {
 				setAttributes={ setAttributes }
 			/>
 			<InspectorControls>
-				<PanelBody title={ __( 'Link Settings' ) }>
+				<PanelBody title={ __( 'Link Settings', 'feed-loop' ) }>
 					<ToggleControl
-						label={ __( 'Make image a link' ) }
+						label={ __( 'Make image a link', 'feed-loop' ) }
 						description={ __(
 							'Link settings can be found on the main Feed Loop block.',
 							'feed-loop'
