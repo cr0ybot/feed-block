@@ -101,6 +101,10 @@ export default function Edit( {
 				<PanelBody title={ __( 'Summary Settings' ) }>
 					<ToggleControl
 						label={ __( 'Show read more link' ) }
+						description={ __(
+							'Link settings can be found on the main Feed Loop block.',
+							'feed-loop'
+						) }
 						checked={ showMore }
 						onChange={ () =>
 							setAttributes( { showMore: ! showMore } )
