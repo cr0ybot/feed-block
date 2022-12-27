@@ -1,0 +1,69 @@
+//
+// Block: feed-item-image, editorStyle.
+//
+// Enqueued in editor.
+//
+
+.wp-block-feed-loop-feed-item-image {
+	// The following override the default placeholder styles that remove
+	// its border so that a user selection for border color or width displays
+	// a visual border. They also override the `img { border: none; }` applied
+	// by core.
+	&__placeholder,
+	.components-placeholder,
+	img {
+		// The following is required to overcome WP Core applying styles that clear
+		// img borders with a higher specificity than those added by the border
+		// block support to provide a default border-style of solid when a border
+		// color or width has been set.
+		&:where(.has-border-color) {
+			border-style: solid;
+		}
+		&:where([style*="border-top-color"]) {
+			border-top-style: solid;
+		}
+		&:where([style*="border-right-color"]) {
+			border-right-style: solid;
+		}
+		&:where([style*="border-bottom-color"]) {
+			border-bottom-style: solid;
+		}
+		&:where([style*="border-left-color"]) {
+			border-left-style: solid;
+		}
+
+		&:where([style*="border-width"]) {
+			border-style: solid;
+		}
+		&:where([style*="border-top-width"]) {
+			border-top-style: solid;
+		}
+		&:where([style*="border-right-width"]) {
+			border-right-style: solid;
+		}
+		&:where([style*="border-bottom-width"]) {
+			border-bottom-style: solid;
+		}
+		&:where([style*="border-left-width"]) {
+			border-left-style: solid;
+		}
+	}
+
+	// Provide a minimum size for the placeholder when resized.
+	// Note, this should be as small as we can afford it, and exists only
+	// to ensure there's room for the upload button.
+	&[style*="height"] .components-placeholder {
+		min-height: 48px;
+		min-width: 48px;
+		height: 100%;
+		width: 100%;
+	}
+}
+
+div[data-type="feed-loop/feed-item-image"] {
+	img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+}
