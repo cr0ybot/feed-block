@@ -38,6 +38,12 @@
 		},
 		"customGradient": {
 			"type": "string"
+		},
+		"placeholderId": {
+			"type": "number"
+		},
+		"placeholderURL": {
+			"type": "string"
 		}
 	},
 	"supports": {

@@ -49,6 +49,14 @@
 		}
 	}
 
+	// Show placeholder when not selected
+	&__placeholder,
+	.components-placeholder {
+		&.has-placeholder-image {
+			display: flex;
+		}
+	}
+
 	// Provide a minimum size for the placeholder when resized.
 	// Note, this should be as small as we can afford it, and exists only
 	// to ensure there's room for the upload button.
