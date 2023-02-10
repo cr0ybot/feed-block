@@ -7,11 +7,11 @@
  * @package feed-loop
  */
 
-if ( ! isset( $attributes['contentType'] ) || empty( $block->context[$attributes['contentType']] ) ) {
+if ( ! isset( $attributes['contentType'] ) || empty( $block->context[ $attributes['contentType'] ] ) ) {
 	return;
 }
 
-$content = $block->context[$attributes['contentType']];
+$content = $block->context[ $attributes['contentType'] ];
 
 $align_class_name = empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}";
 
