@@ -119,6 +119,7 @@ function ImageDisplay( {
 
 export default function Edit( props ) {
 	const {
+		clientId,
 		attributes,
 		setAttributes,
 		context: { image },
