@@ -72,6 +72,7 @@ function get_feed( $url ) {
 				'date_modified'      => $feed_item->get_updated_date( 'c' ),
 				'authors'            => array(),
 				'tags'               => array(),
+				'custom'             => array(), // For custom namespaced elements.
 			);
 
 			// Populate authors.
@@ -91,6 +92,23 @@ function get_feed( $url ) {
 			if ( ! empty( $item_categories ) ) {
 				foreach ( $item_categories as $category ) {
 					$item['tags'][] = $category->get_label();
+				}
+			}
+
+			// Populate custom namespaced elements.
+			// NOTE: These are keyed by the namespace URL, not the namespace prefix.
+			if ( ! empty( $feed_item->data['child'] ) && count( $feed_item->data['child'] ) > 1 ) {
+				$custom = array_slice( $feed_item->data['child'], 1 );
+				foreach ( $custom as $namespace => $namespace_items ) {
+					$item['custom'][ $namespace ] = array_map(
+						function( $namespace_item ) {
+							if ( ! empty( $namespace_item[0] ) && isset( $namespace_item[0]['data'] ) ) {
+								return $namespace_item[0]['data'];
+							}
+							return '';
+						},
+						$namespace_items
+					);
 				}
 			}
 
@@ -117,6 +135,8 @@ function get_feed( $url ) {
 				// Add noimg value.
 				$item['content_html_noimg'] = preg_replace( '/<img[^>]+\>/i', '', $dom->saveHTML() );
 			}
+
+			error_log( print_r( $item, true ) );
 
 			/**
 			 * Filters the feed item array.
