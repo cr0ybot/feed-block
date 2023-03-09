@@ -19,11 +19,19 @@
 		}
 	},
 	"supports": {
-		"align": [ "wide", "full" ],
-		"html": false,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true,
+				"link": true
+			}
+		},
 		"dimensions": {
 			"minHeight": true
 		},
+		"html": false,
 		"spacing": {
 			"margin": true,
 			"padding": true
