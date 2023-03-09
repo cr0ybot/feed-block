@@ -47,6 +47,7 @@ function ImageDisplay( {
 } ) {
 	const {
 		isLink,
+		aspectRatio,
 		height,
 		width,
 		scale,
@@ -58,6 +59,7 @@ function ImageDisplay( {
 		style: {
 			width,
 			height,
+			aspectRatio,
 		},
 	} );
 	const borderProps = useBorderProps( attributes );
@@ -97,6 +99,13 @@ function ImageDisplay( {
 		}
 	};
 
+	const imageStyles = {
+		...borderProps.style,
+		height: ( !! aspectRatio && '100%' ) || height,
+		width: !! aspectRatio && '100%',
+		objectFit: !! ( height || aspectRatio ) && scale,
+	};
+
 	const ItemPlaceholder = ( props ) => {
 		return (
 			<Placeholder
@@ -107,7 +116,7 @@ function ImageDisplay( {
 					placeholderURL && 'has-placeholder-image'
 				) }
 				withIllustration={ true }
-				style={ borderProps.style }
+				style={ imageStyles }
 				{ ...props }
 			/>
 		);
@@ -207,12 +216,6 @@ function ImageDisplay( {
 			</InspectorControls>
 		</>
 	);
-
-	const imageStyles = {
-		...borderProps.style,
-		height,
-		objectFit: height && scale,
-	};
 
 	if ( ! image || image === '' ) {
 		return (
