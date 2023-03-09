@@ -18,6 +18,7 @@
 namespace FeedLoop;
 
 // Import includes.
+require_once __DIR__ . '/inc/util.php';
 require_once __DIR__ . '/inc/feed.php';
 require_once __DIR__ . '/inc/ajax.php';
 require_once __DIR__ . '/inc/enqueue.php';
