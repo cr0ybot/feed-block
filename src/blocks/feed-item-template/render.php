@@ -33,8 +33,6 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classname
 for ( $i = 0; $i < $block->context['itemsToShow']; $i++ ) :
 	$item = $feed['items'][ $i ];
 
-	error_log( print_r( $item, true ) );
-
 	// Get an instance of the current Feed Item Template block.
 	$block_instance = $block->parsed_block;
 
