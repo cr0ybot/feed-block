@@ -8,7 +8,7 @@
  */
 
 use function FeedLoop\Util\get_block_feed_item_image_overlay_element_markup;
-use function FeedLoop\Util\get_block_feed_item_image_border_attributes;
+use function FeedLoop\Util\get_block_border_attributes;
 
 if ( ( ! isset( $block->context['image'] ) || empty( $block->context['image'] ) && ( empty( $attributes['placeholderURL'] ) ) ) ) {
 	return;
@@ -23,7 +23,7 @@ if ( empty( $image_url ) ) {
 
 $is_link        = isset( $attributes['isLink'] ) && $attributes['isLink'];
 $size_slug      = isset( $attributes['sizeSlug'] ) ? $attributes['sizeSlug'] : 'post-thumbnail';
-$attr           = get_block_feed_item_image_border_attributes( $attributes );
+$attr           = get_block_border_attributes( $attributes );
 $overlay_markup = get_block_feed_item_image_overlay_element_markup( $attributes );
 
 if ( $is_link ) {

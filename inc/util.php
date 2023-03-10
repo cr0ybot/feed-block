@@ -28,7 +28,7 @@ function get_block_feed_item_image_overlay_element_markup( $attributes ) {
 	}
 
 	// Apply border classes and styles.
-	$border_attributes = get_block_feed_item_image_border_attributes( $attributes );
+	$border_attributes = get_block_border_attributes( $attributes );
 
 	if ( ! empty( $border_attributes['class'] ) ) {
 		$class_names[] = $border_attributes['class'];
@@ -73,13 +73,12 @@ function get_block_feed_item_image_overlay_element_markup( $attributes ) {
 }
 
 /**
- * Generates class names and styles to apply the border support styles for
- * the Post Featured Image block.
+ * Generates class names and styles to apply the border support styles
  *
  * @param array $attributes The block attributes.
  * @return array The border-related classnames and styles for the block.
  */
-function get_block_feed_item_image_border_attributes( $attributes ) {
+function get_block_border_attributes( $attributes ) {
 	$border_styles = array();
 	$sides         = array( 'top', 'right', 'bottom', 'left' );
 

@@ -183,7 +183,6 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						) }
 					</>
 				);
-			// If datetime is selected, provide input & display PHP date format strings.
 			case 'datetime':
 				return (
 					<>
@@ -193,7 +192,10 @@ export default function Edit( { attributes, setAttributes, context } ) {
 								'feed-loop'
 							) }
 							<a href="https://www.php.net/manual/en/function.date.php">
-								PHP datetime format documentation
+								{ __(
+									'PHP datetime format documentation',
+									'feed-loop'
+								) }
 							</a>
 						</p>
 						<TextControl
