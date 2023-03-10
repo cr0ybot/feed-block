@@ -1,6 +1,6 @@
 {
 	"name": "feed-loop-block",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Advanced RSS and Atom feed block with configurable child blocks, similar to the Query Loop block.",
 	"author": {
 		"name": "Cory Hughart",
@@ -14,7 +14,7 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
+		"plugin-zip": "wp-scripts plugin-zip --webpack-copy-php",
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
