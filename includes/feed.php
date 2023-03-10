@@ -136,8 +136,6 @@ function get_feed( $url ) {
 				$item['content_html_noimg'] = preg_replace( '/<img[^>]+\>/i', '', $dom->saveHTML() );
 			}
 
-			error_log( print_r( $item, true ) );
-
 			/**
 			 * Filters the feed item array.
 			 *

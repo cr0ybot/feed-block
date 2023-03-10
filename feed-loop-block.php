@@ -18,10 +18,10 @@
 namespace FeedLoop;
 
 // Import includes.
-require_once __DIR__ . '/inc/util.php';
-require_once __DIR__ . '/inc/feed.php';
-require_once __DIR__ . '/inc/ajax.php';
-require_once __DIR__ . '/inc/enqueue.php';
+require_once __DIR__ . '/includes/util.php';
+require_once __DIR__ . '/includes/feed.php';
+require_once __DIR__ . '/includes/ajax.php';
+require_once __DIR__ . '/includes/enqueue.php';
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
