@@ -50,12 +50,6 @@
 		}
 	},
 	"supports": {
-		"align": [ "left", "right", "center", "wide", "full" ],
-		"color": {
-			"__experimentalDuotone": "img, .wp-block-feed-loop-feed-item-image__placeholder, .components-placeholder__illustration, .components-placeholder::before",
-			"text": false,
-			"background": false
-		},
 		"__experimentalBorder": {
 			"color": true,
 			"radius": true,
@@ -67,6 +61,12 @@
 				"radius": true,
 				"width": true
 			}
+		},
+		"align": [ "left", "right", "center", "wide", "full" ],
+		"color": {
+			"__experimentalDuotone": "img, .wp-block-feed-loop-feed-item-image__placeholder, .components-placeholder__illustration, .components-placeholder::before",
+			"text": false,
+			"background": false
 		},
 		"html": false,
 		"spacing": {
