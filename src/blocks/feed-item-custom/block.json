@@ -1,0 +1,105 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "feed-loop/feed-item-custom",
+	"version": "0.1.0",
+	"title": "Custom Feed Item",
+	"category": "widgets",
+	"description": "Displays the content of custom namespaced tags within a feed item in a custom format.",
+	"ancestor": [ "feed-loop/feed-item-template" ],
+	"usesContext": [ "custom", "content_html_noimg", "content_text" ],
+	"attributes": {
+		"textAlign": {
+			"type": "string"
+		},
+		"tag": {
+			"type": "array",
+			"default": []
+		},
+		"contentType": {
+			"type": "string",
+			"default": "text",
+			"enum": [
+				"text",
+				"html",
+				"html_noimg",
+				"datetime",
+				"image",
+				"link"
+			]
+		},
+		"constrainLength": {
+			"type": "boolean",
+			"default": false
+		},
+		"textLength": {
+			"type": "number",
+			"default": 55
+		},
+		"dateInputFormat": {
+			"type": "string",
+			"default": ""
+		},
+		"dateDisplayFormat": {
+			"type": "string",
+			"default": ""
+		},
+		"dateType": {
+			"type": "string",
+			"default": "datetime",
+			"enum": [ "datetime", "date", "time" ]
+		}
+	},
+	"supports": {
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		},
+		"align": [ "wide", "full" ],
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true,
+				"link": true
+			}
+		},
+		"dimensions": {
+			"minHeight": true
+		},
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true,
+				"fontAppearance": true
+			}
+		}
+	},
+	"textdomain": "feed-loop",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}
