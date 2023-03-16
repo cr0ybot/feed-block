@@ -14,6 +14,13 @@ namespace FeedLoop\Feed;
  * @return array
  */
 function get_feed( $url ) {
+
+	// Use object cache if available.
+	$cached_json = wp_cache_get( $url, 'feed-loop' );
+	if ( false !== $cached_json ) {
+		return $cached_json;
+	}
+
 	$feed = fetch_feed( $url );
 
 	if ( is_wp_error( $feed ) ) {
@@ -158,5 +165,10 @@ function get_feed( $url ) {
 	 * @param \SimplePie $feed The feed object.
 	 * @return array
 	 */
-	return apply_filters( 'feed_loop_feed', $json, $feed );
+	$json = apply_filters( 'feed_loop_feed', $json, $feed );
+
+	// Cache the feed.
+	wp_cache_set( $url, $json, 'feed_loop' );
+
+	return $json;
 }
