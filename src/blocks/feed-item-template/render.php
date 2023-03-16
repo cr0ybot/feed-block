@@ -40,7 +40,11 @@ $wrapper_attributes = \get_block_wrapper_attributes( array( 'class' => $classnam
 
 <ul <?php echo $wrapper_attributes; ?>>
 <?php
-for ( $i = 0; $i < $block->context['itemsToShow']; $i++ ) :
+// Get the number of items available.
+$item_count = count( $feed['items'] );
+
+// Loop through the items to be displayed.
+for ( $i = 0; $i < $block->context['itemsToShow'] && $i < $item_count; $i++ ) :
 	$item = $feed['items'][ $i ];
 
 	// Get an instance of the current Feed Item Template block.
