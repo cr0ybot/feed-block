@@ -7,13 +7,23 @@
  * @package feed-loop
  */
 
+namespace FeedLoop\Blocks\FeedItemTemplate;
+
 use function FeedLoop\Feed\get_feed;
+
 
 $feed = get_feed( $block->context['feedURL'] );
 
 if ( is_wp_error( $feed ) ) {
 	if ( WP_DEBUG ) {
 		error_log( 'Feed Loop: ' . $feed->get_error_message() . " ({$block->context['feedURL']})" ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+	}
+	return;
+}
+
+if ( empty( $feed['items'] ) ) {
+	if ( WP_DEBUG ) {
+		error_log( 'Feed Loop: No items found in feed ' . " ({$block->context['feedURL']})" ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
 	}
 	return;
 }
@@ -25,7 +35,7 @@ if ( isset( $block->context['displayLayout'] ) ) {
 	}
 }
 
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $classnames ) );
+$wrapper_attributes = \get_block_wrapper_attributes( array( 'class' => $classnames ) );
 ?>
 
 <ul <?php echo $wrapper_attributes; ?>>
@@ -43,7 +53,7 @@ for ( $i = 0; $i < $block->context['itemsToShow']; $i++ ) :
 	// Render the inner blocks of the Feed Item Template block with `dynamic` set to `false` to prevent calling
 	// `render_callback` and ensure that no wrapper markup is included.
 	$block_content = (
-		new WP_Block(
+		new \WP_Block(
 			$block_instance,
 			$item,
 		)
