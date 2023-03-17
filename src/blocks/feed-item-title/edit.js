@@ -43,7 +43,7 @@ export default function Edit( {
 	const content =
 		tagContent && tagContent !== ''
 			? unescape( tagContent )
-			: __( 'Feed Item Title' );
+			: __( '<Feed Item Title>' );
 	let titleElement = <Tag { ...blockProps }>{ content }</Tag>;
 	if ( isLink && url ) {
 		titleElement = (
