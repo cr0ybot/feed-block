@@ -14,22 +14,37 @@ import {
 import { ToggleControl, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
+import CustomTagSelect from '../../common/components/custom-tag-select';
+
 import HeadingLevelDropdown from './heading-level-dropdown';
 
 export default function Edit( {
-	attributes: { level, textAlign, isLink },
+	attributes: { tag, level, textAlign, isLink },
 	setAttributes,
-	context: { title, url, rel, linkTarget },
+	context: { custom, title, url, rel, linkTarget },
 } ) {
 	const Tag = 0 === level ? 'p' : `h${ level }`;
-	const blockProps = useBlockProps( {
+
+	// Set up block props.
+	const atts = {
 		className: classnames( {
 			[ `has-text-align-${ textAlign }` ]: textAlign,
 		} ),
-	} );
-	const titleContent =
-		title && title !== '' ? unescape( title ) : __( 'Feed Item Title' );
-	let titleElement = <Tag { ...blockProps }>{ titleContent }</Tag>;
+	};
+	const tagName = tag.length === 2 ? tag[ 1 ] : '';
+	if ( tagName !== '' ) {
+		atts[ 'data-tag' ] = tagName;
+	}
+	const blockProps = useBlockProps( atts );
+
+	// Set up title content.
+	const tagContent =
+		tag.length === 2 ? custom[ tag[ 0 ] ][ tag[ 1 ] ] : title;
+	const content =
+		tagContent && tagContent !== ''
+			? unescape( tagContent )
+			: __( 'Feed Item Title' );
+	let titleElement = <Tag { ...blockProps }>{ content }</Tag>;
 	if ( isLink && url ) {
 		titleElement = (
 			<Tag { ...blockProps }>
@@ -39,7 +54,7 @@ export default function Edit( {
 					target={ linkTarget }
 					onClick={ ( event ) => event.preventDefault() }
 				>
-					{ titleContent }
+					{ content }
 				</a>
 			</Tag>
 		);
@@ -62,6 +77,13 @@ export default function Edit( {
 				/>
 			</BlockControls>
 			<InspectorControls>
+				<PanelBody title={ __( 'Content Settings', 'feed-block' ) }>
+					<CustomTagSelect
+						custom={ custom }
+						onChange={ ( tag ) => setAttributes( { tag } ) }
+						selected={ tag }
+					/>
+				</PanelBody>
 				<PanelBody title={ __( 'Link Settings', 'feed-block' ) }>
 					<ToggleControl
 						label={ __( 'Make title a link', 'feed-block' ) }
