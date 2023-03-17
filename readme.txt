@@ -1,55 +1,58 @@
 === Feed Loop Block ===
-Contributors:      Cory Hughart
+Contributors:      cr0ybot
 Tags:              block, rss, atom, feed
 Tested up to:      6.1
-Stable tag:        0.2.0
+Stable tag:        0.3.0
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 
 Advanced RSS and Atom feed block with configurable child blocks, similar to the Query Loop block.
 
+
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+You've used other RSS feed plugins, or even the RSS Feed block available in WordPress. But you want more. You want to be able to customize the feed items as blocks like the Query Loop! You want to be able to place the image over here, and the description over there, and have the date show just here.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Look no further, because this is the plugin that solves that problem.
 
-== Installation ==
+The Feed Loop Block can be placed in your post or page, and it will display the feed items as blocks just like the Query Loop. You can then customize the feed item blocks to display the information you want in the layout of your choosing.
 
-This section describes how to install the plugin and get it working.
+= Feed Item Template Blocks =
 
-e.g.
+The Feed Loop Block comes with a number of blocks that can be used to display the feed item information. These blocks can be placed in any order, and can be used multiple times.
 
-1. Upload the plugin files to the `/wp-content/plugins/feed-block` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
+* Feed Item Title
+* Feed Item Summary
+* Feed Item Content
+* Feed Item Image
+
+= Top-Level Feed Blocks =
+
+These blocks can be placed outside of the Feed Item Template to display information about the feed itself.
+
+* Feed No Results
 
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Why can't I use the HTML formatting option? =
 
-An answer to that question.
+Make sure your user account has the `unfiltered_html` capability, often reserved only for the admin role. This is a security feature to prevent users from accidentally adding malicious code to their posts.
 
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
 
 == Changelog ==
 
-= 0.1.0 =
-* Release
+= 2023-03-17 0.3.0 =
+* Rename again to feed-block
+* Feature: No Results block
+* Fix: Fatal error when no feed items are found
+* Optimization: Use object cache for processed feed
 
-== Arbitrary section ==
+= 2023-03-02 0.2.0 =
+* Rename to feed-loop-block (from rss-block)
+* Feature: Custom Feed Item block for custom namespaced items
+* Feature: Feed Item Image block with placeholder
+* Feature: Feed Item Content block with no image option
 
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+= 2022-12-21 0.1.0 =
+* Initial prerelease

@@ -5,7 +5,7 @@
  * Description:       Advanced RSS & Atom feed block with configurable child blocks, similar to the Query Loop block.
  * Requires at least: 6.1
  * Requires PHP:      7.0
- * Version:           0.2.0
+ * Version:           0.3.0
  * Author:            Cory Hughart
  * Author URI:        https://coryhughart.com
  * License:           GPL-3.0-or-later
