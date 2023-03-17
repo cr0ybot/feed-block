@@ -3,6 +3,7 @@
  */
 
 import classnames from 'classnames';
+import DOMPurify from 'dompurify';
 
 import { unescape } from 'lodash';
 import {
@@ -31,18 +32,20 @@ export default function Edit( {
 			[ `has-text-align-${ textAlign }` ]: textAlign,
 		} ),
 	};
-	const tagName = tag.length === 2 ? tag[ 1 ] : '';
-	if ( tagName !== '' ) {
-		atts[ 'data-tag' ] = tagName;
+	const customTag = tag.length === 2 ? tag[ 1 ] : '';
+	if ( customTag !== '' ) {
+		atts[ 'data-tag' ] = customTag;
 	}
 	const blockProps = useBlockProps( atts );
 
 	// Set up title content.
-	const tagContent =
+	const customContent =
 		tag.length === 2 ? custom[ tag[ 0 ] ][ tag[ 1 ] ] : title;
 	const content =
-		tagContent && tagContent !== ''
-			? unescape( tagContent )
+		customContent && customContent !== ''
+			? DOMPurify.sanitize( unescape( customContent ), {
+					ALLOWED_TAGS: [],
+			  } )
 			: __( '<Feed Item Title>' );
 	let titleElement = <Tag { ...blockProps }>{ content }</Tag>;
 	if ( isLink && url ) {
