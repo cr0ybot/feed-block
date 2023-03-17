@@ -33,10 +33,10 @@ export default function Edit( props ) {
 				<Placeholder icon={ rss } label="Feed Loop">
 					<form
 						onSubmit={ onSubmitFeedURL }
-						className="feed-loop-feed-loop__placeholder-form"
+						className="wp-block-feed-loop-feed-loop__placeholder-form"
 					>
 						<TextControl
-							className="feed-loop-feed-loop__placeholder-input"
+							className="wp-block-feed-loop-feed-loop__placeholder-input"
 							label={ __( 'Feed URL (RSS/Atom)', 'feed-loop' ) }
 							value={ feedURL }
 							onChange={ ( value ) =>
