@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "feed-loop/feed-no-results",
+	"version": "0.1.0",
+	"title": "Feed Loop - No Results",
+	"category": "widgets",
+	"icon": "rss",
+	"description": "Contains the block elements used to render content when no feed items are found.",
+	"parent": [ "feed-loop/feed-loop" ],
+	"usesContext": [ "feedURL" ],
+	"supports": {
+		"__experimentalLayout": true,
+		"anchor": true,
+		"align": true,
+		"color": {
+			"gradients": true,
+			"link": true
+		},
+		"html": false,
+		"reusable": false,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true
+			}
+		}
+	},
+	"textdomain": "feed-loop",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css"
+}

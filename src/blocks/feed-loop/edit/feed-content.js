@@ -22,7 +22,10 @@ import {
 import { __ } from '@wordpress/i18n';
 import { edit, list, grid } from '@wordpress/icons';
 
-const TEMPLATE = [ [ 'feed-loop/feed-item-template' ] ];
+const TEMPLATE = [
+	[ 'feed-loop/feed-item-template' ],
+	[ 'feed-loop/feed-no-results' ],
+];
 const DEFAULT_MIN_ITEMS = 1;
 const DEFAULT_MAX_ITEMS = 20;
 
