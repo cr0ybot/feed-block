@@ -31,3 +31,13 @@ The content can be displayed as HTML, HTML with images removed, and plain text, 
 The Feed Item Summary block is used to display the summary of a feed item. It is similar to the Post Excerpt block, but instead of displaying the excerpt of a post, it displays the summary of a feed item.
 
 The summary can be limited to a certain number of words, and can optionally include a "read more" link.It also includes other typography settings.
+
+### Feed Loop - No Results
+
+The Feed Loop - No Results block is used to display text or other blocks when no feed items are found. It is similar to the No Results block used by the Query Loop block.
+
+## To Do
+
+* [ ] Prevent users without `unfiltered_html` capability from using HTML format in the Feed Item Content block, or otherwise filter the HTML.
+* [ ] Add support for displaying top-level feed attributes, such as title, description, icon, and authors.
+* [ ] Add support for choosing custom feed tags for any of the blocks within a Feed Item Template, instead of one all-encompasing Custom Feed Item.
