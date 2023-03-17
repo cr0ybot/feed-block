@@ -1,5 +1,5 @@
 /**
- * Block: feed-loop.
+ * Block: feed.
  */
 
 import { registerBlockType } from '@wordpress/blocks';

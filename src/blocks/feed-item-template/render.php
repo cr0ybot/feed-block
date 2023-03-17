@@ -4,12 +4,12 @@
  *
  * Global vars: $attributes, $content, $block.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
-namespace FeedLoop\Blocks\FeedItemTemplate;
+namespace FeedBlock\Blocks\FeedItemTemplate;
 
-use function FeedLoop\Feed\get_feed;
+use function FeedBlock\Feed\get_feed;
 
 
 $feed = get_feed( $block->context['feedURL'] );
@@ -57,14 +57,11 @@ for ( $i = 0; $i < $block->context['itemsToShow'] && $i < $item_count; $i++ ) :
 	// Render the inner blocks of the Feed Item Template block with `dynamic` set to `false` to prevent calling
 	// `render_callback` and ensure that no wrapper markup is included.
 	$block_content = (
-		new \WP_Block(
-			$block_instance,
-			$item,
-		)
+		new \WP_Block( $block_instance, $item )
 	)->render( array( 'dynamic' => false ) );
 
 	// Wrap the render inner blocks in a `li` element with the appropriate post classes.
-	$item_classes = 'wp-block-feed-loop-feed-item';
+	$item_classes = 'wp-block-feed-block-feed-item';
 	?>
 	<li class="<?php echo esc_attr( $item_classes ); ?>">
 		<?php echo $block_content; ?>

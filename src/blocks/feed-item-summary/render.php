@@ -4,7 +4,7 @@
  *
  * Global vars: $attributes, $content, $block.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
 if ( ! isset( $block->context['summary'] ) || empty( $block->context['summary'] ) ) {
@@ -18,9 +18,9 @@ if ( $attributes['constrainLength'] ) {
 
 $readMoreLink = '';
 if ( $attributes['showMore'] && ! empty( $attributes['moreText'] ) ) {
-	$rel   = ! empty( $block->context['rel'] ) ? 'rel="' . esc_attr( $block->context['rel'] ) . '"' : '';
+	$rel          = ! empty( $block->context['rel'] ) ? 'rel="' . esc_attr( $block->context['rel'] ) . '"' : '';
 	$readMoreLink = sprintf(
-		'<a href="%1$s" class="wp-block-feed-loop-feed-item-summary__more-link" target="%2$s" %3$s>%4$s</a>',
+		'<a href="%1$s" class="wp-block-feed-block-feed-item-summary__more-link" target="%2$s" %3$s>%4$s</a>',
 		esc_url( $block->context['url'] ),
 		esc_attr( $block->context['linkTarget'] ?? '_blank' ),
 		$rel,
@@ -39,14 +39,14 @@ if ( ! $attributes['showMore'] ) :
 	echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 else :
 	if ( $attributes['showMoreOnNewLine'] ) :
-?>
+		?>
 	<p><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 	<p><?php echo $readMoreLink; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-<?php
+		<?php
 	else :
-?>
+		?>
 	<p><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php echo $readMoreLink; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-<?php
+		<?php
 	endif;
 endif;
 ?>

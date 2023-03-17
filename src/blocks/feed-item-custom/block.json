@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "feed-loop/feed-item-custom",
+	"name": "feed-block/feed-item-custom",
 	"version": "0.1.0",
 	"title": "Custom Feed Item",
 	"category": "widgets",
 	"description": "Displays the content of custom namespaced tags within a feed item in a custom format.",
-	"ancestor": [ "feed-loop/feed-item-template" ],
+	"ancestor": [ "feed-block/feed-item-template" ],
 	"usesContext": [ "custom", "content_html_noimg", "content_text" ],
 	"attributes": {
 		"textAlign": {
@@ -97,7 +97,7 @@
 			}
 		}
 	},
-	"textdomain": "feed-loop",
+	"textdomain": "feed-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
 	"style": "file:./style.css",

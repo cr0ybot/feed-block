@@ -4,7 +4,7 @@
  *
  * Global vars: $attributes, $content, $block.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
 if ( ! isset( $block->context['title'] ) ) {

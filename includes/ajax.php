@@ -1,19 +1,19 @@
 <?php
 /**
- * Feed Loop AJAX endpoints.
+ * Feed Block AJAX endpoints.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
-namespace FeedLoop\AJAX;
+namespace FeedBlock\AJAX;
 
-use function FeedLoop\Feed\get_feed;
+use function FeedBlock\Feed\get_feed;
 
 /**
  * Fetches a feed's contents. Admin only.
  */
 function get_feed_action() {
-	check_ajax_referer( 'feed-loop' );
+	check_ajax_referer( 'feed-block' );
 
 	if ( ! current_user_can( 'edit_posts' ) ) {
 		wp_send_json_error( 'Unauthorized' );
@@ -33,4 +33,4 @@ function get_feed_action() {
 
 	wp_send_json_success( $json );
 }
-add_action( 'wp_ajax_feed_loop_get_feed', __NAMESPACE__ . '\\get_feed_action' );
+add_action( 'wp_ajax_feed_block_get_feed', __NAMESPACE__ . '\\get_feed_action' );

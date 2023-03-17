@@ -17,8 +17,8 @@ import { memo, useEffect, useMemo, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 const TEMPLATE = [
-	[ 'feed-loop/feed-item-title' ],
-	[ 'feed-loop/feed-item-content' ],
+	[ 'feed-block/feed-item-title' ],
+	[ 'feed-block/feed-item-content' ],
 ];
 
 function FeedItemTemplateInnerBlocks() {
@@ -38,7 +38,7 @@ function FeedItemTemplateBlockPreview( {
 	const blockPreviewProps = useBlockPreview( {
 		blocks,
 		props: {
-			className: 'wp-block-feed-loop-feed-item',
+			className: 'wp-block-feed-block-feed-item',
 		},
 	} );
 
@@ -107,9 +107,9 @@ export default function Edit( {
 					'Content-Type': 'application/x-www-form-urlencoded',
 				},
 				body: new URLSearchParams( {
-					action: 'feed_loop_get_feed',
+					action: 'feed_block_get_feed',
 					url: feedURL,
-					_ajax_nonce: feedLoop.nonce,
+					_ajax_nonce: feedBlock.nonce,
 				} ),
 			} );
 			const data = await response.json();

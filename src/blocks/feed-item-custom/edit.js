@@ -27,18 +27,18 @@ import { __ } from '@wordpress/i18n';
 import { trimWords } from '../../common/utils';
 
 const contentTypes = {
-	text: __( 'Plain Text', 'feed-loop' ),
-	html: __( 'HTML', 'feed-loop' ),
-	html_noimg: __( 'HTML (remove images)', 'feed-loop' ),
-	datetime: __( 'Date and/or Time', 'feed-loop' ),
-	//image: __( 'Image', 'feed-loop' ),
-	//link: __( 'Link', 'feed-loop' ),
+	text: __( 'Plain Text', 'feed-block' ),
+	html: __( 'HTML', 'feed-block' ),
+	html_noimg: __( 'HTML (remove images)', 'feed-block' ),
+	datetime: __( 'Date and/or Time', 'feed-block' ),
+	//image: __( 'Image', 'feed-block' ),
+	//link: __( 'Link', 'feed-block' ),
 };
 
 const dateTypes = {
-	datetime: __( 'Date and Time', 'feed-loop' ),
-	date: __( 'Date only', 'feed-loop' ),
-	time: __( 'Time only', 'feed-loop' ),
+	datetime: __( 'Date and Time', 'feed-block' ),
+	date: __( 'Date only', 'feed-block' ),
+	time: __( 'Time only', 'feed-block' ),
 };
 
 const datetimeFormat = {
@@ -79,7 +79,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 	let contentElement = (
 		<div { ...blockProps }>{ `${ tagName } ${ __(
 			'(Custom Feed Item)',
-			'feed-loop'
+			'feed-block'
 		) }` }</div>
 	);
 	if ( content && content !== '' ) {
@@ -157,7 +157,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 				return (
 					<>
 						<ToggleControl
-							label={ __( 'Constrain Length', 'feed-loop' ) }
+							label={ __( 'Constrain Length', 'feed-block' ) }
 							checked={ constrainLength }
 							onChange={ () =>
 								setAttributes( {
@@ -168,7 +168,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						{ constrainLength && (
 							// Note: had to save as string for the control to work???
 							<RangeControl
-								label={ __( 'Length', 'feed-loop' ) }
+								label={ __( 'Length', 'feed-block' ) }
 								value={ textLength }
 								initialPosition={ 55 }
 								onChange={ ( nextLength ) => {
@@ -189,17 +189,17 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						<p className="components-base-control__help">
 							{ __(
 								'Date and time formats use PHP date format strings. See: ',
-								'feed-loop'
+								'feed-block'
 							) }
 							<a href="https://www.php.net/manual/en/function.date.php">
 								{ __(
 									'PHP datetime format documentation',
-									'feed-loop'
+									'feed-block'
 								) }
 							</a>
 						</p>
 						<TextControl
-							label={ __( 'Date Input Format', 'feed-loop' ) }
+							label={ __( 'Date Input Format', 'feed-block' ) }
 							placeholder="Y-m-d H:i:s"
 							value={ dateInputFormat }
 							onChange={ ( nextFormat ) => {
@@ -209,7 +209,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 							} }
 						/>
 						<TextControl
-							label={ __( 'Date Display Format', 'feed-loop' ) }
+							label={ __( 'Date Display Format', 'feed-block' ) }
 							placeholder="F j, Y"
 							value={ dateDisplayFormat }
 							onChange={ ( nextFormat ) => {
@@ -219,10 +219,10 @@ export default function Edit( { attributes, setAttributes, context } ) {
 							} }
 						/>
 						<SelectControl
-							label={ __( 'Date Type', 'feed-loop' ) }
+							label={ __( 'Date Type', 'feed-block' ) }
 							help={ __(
 								'This setting will improve the accessibility of the output.',
-								'feed-loop'
+								'feed-block'
 							) }
 							value={ dateType }
 							options={ Object.entries( dateTypes ).map(
@@ -253,11 +253,11 @@ export default function Edit( { attributes, setAttributes, context } ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Content Settings', 'feed-loop' ) }>
+				<PanelBody title={ __( 'Content Settings', 'feed-block' ) }>
 					<TreeSelect
-						label={ __( 'Content Tag', 'feed-loop' ) }
+						label={ __( 'Content Tag', 'feed-block' ) }
 						selectedId={ tag.join( '|' ) }
-						noOptionLabel={ __( 'Select a tag', 'feed-loop' ) }
+						noOptionLabel={ __( 'Select a tag', 'feed-block' ) }
 						tree={ Object.entries( context[ 'custom' ] ).map(
 							( [ namespace, tags ] ) => ( {
 								name: namespace,
@@ -281,7 +281,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						} }
 					/>
 					<SelectControl
-						label={ __( 'Content Type', 'feed-loop' ) }
+						label={ __( 'Content Type', 'feed-block' ) }
 						value={ contentType }
 						options={ Object.entries( contentTypes ).map(
 							( [ value, label ] ) => ( {

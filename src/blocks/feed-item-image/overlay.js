@@ -51,7 +51,7 @@ const Overlay = ( {
 				<span
 					aria-hidden="true"
 					className={ classnames(
-						'wp-block-feed-loop-feed-item-image__overlay',
+						'wp-block-feed-block-feed-item-image__overlay',
 						dimRatioToClass( dimRatio ),
 						{
 							[ overlayColor.class ]: overlayColor.class,

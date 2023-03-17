@@ -4,11 +4,11 @@
  *
  * Global vars: $attributes, $content, $block.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
-use function FeedLoop\Util\get_block_feed_item_image_overlay_element_markup;
-use function FeedLoop\Util\get_block_border_attributes;
+use function FeedBlock\Util\get_block_feed_item_image_overlay_element_markup;
+use function FeedBlock\Util\get_block_border_attributes;
 
 if ( ( ! isset( $block->context['image'] ) || empty( $block->context['image'] ) && ( empty( $attributes['placeholderURL'] ) ) ) ) {
 	return;

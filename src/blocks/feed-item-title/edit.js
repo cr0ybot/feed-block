@@ -62,12 +62,12 @@ export default function Edit( {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Link Settings', 'feed-loop' ) }>
+				<PanelBody title={ __( 'Link Settings', 'feed-block' ) }>
 					<ToggleControl
-						label={ __( 'Make title a link', 'feed-loop' ) }
+						label={ __( 'Make title a link', 'feed-block' ) }
 						description={ __(
 							'Link settings can be found on the main Feed Loop block.',
-							'feed-loop'
+							'feed-block'
 						) }
 						checked={ isLink }
 						onChange={ ( nextIsLink ) => {

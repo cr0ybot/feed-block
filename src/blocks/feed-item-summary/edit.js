@@ -38,13 +38,13 @@ export default function Edit( {
 	const readMoreLink = (
 		<RichText
 			tagName="a"
-			className="wp-block-feed-loop-feed-item-summary__more-link"
+			className="wp-block-feed-block-feed-item-summary__more-link"
 			value={ moreText }
 			onChange={ ( nextMoreText ) => {
 				setAttributes( { moreText: nextMoreText } );
 			} }
-			aria-label={ __( '"Read more" link text', 'feed-loop' ) }
-			placeholder={ __( 'Add "read more" link text', 'feed-loop' ) }
+			aria-label={ __( '"Read more" link text', 'feed-block' ) }
+			placeholder={ __( 'Add "read more" link text', 'feed-block' ) }
 			withoutInteractiveFormatting={ true }
 		/>
 	);
@@ -52,7 +52,7 @@ export default function Edit( {
 	const content = constrainLength
 		? trimWords( summary, summaryLength )
 		: summary;
-	let summaryContent = __( '(Feed Item Summary)', 'feed-loop' );
+	let summaryContent = __( '(Feed Item Summary)', 'feed-block' );
 	if ( content && content !== '' ) {
 		summaryContent = unescape( content );
 	}
@@ -73,7 +73,7 @@ export default function Edit( {
 						label={ __( 'Show read more link' ) }
 						description={ __(
 							'Link settings can be found on the main Feed Loop block.',
-							'feed-loop'
+							'feed-block'
 						) }
 						checked={ showMore }
 						onChange={ () =>

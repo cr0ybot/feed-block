@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "feed-loop/feed-item-summary",
+	"name": "feed-block/feed-item-summary",
 	"version": "0.1.0",
 	"title": "Feed Item Summary",
 	"category": "widgets",
 	"description": "Displays the summary of a feed item, similar to the Post Excerpt block.",
-	"ancestor": [ "feed-loop/feed-item-template" ],
+	"ancestor": [ "feed-block/feed-item-template" ],
 	"usesContext": [ "summary", "url", "rel", "linkTarget" ],
 	"attributes": {
 		"textAlign": {
@@ -61,7 +61,7 @@
 			}
 		}
 	},
-	"textdomain": "feed-loop",
+	"textdomain": "feed-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
 	"style": "file:./style.css",

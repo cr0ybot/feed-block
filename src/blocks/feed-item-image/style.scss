@@ -4,7 +4,7 @@
 // Enqueued in editor and front end.
 //
 
-.wp-block-feed-loop-feed-item-image {
+.wp-block-feed-block-feed-item-image {
 	margin-left: 0;
 	margin-right: 0;
 	a {
@@ -23,13 +23,13 @@
 		width: 100%;
 	}
 
-	.wp-block-feed-loop-feed-item-image__overlay {
+	.wp-block-feed-block-feed-item-image__overlay {
 		&.has-background-dim {
 			position: absolute;
 			inset: 0;
 			background-color: black;
 
-			@at-root .wp-block-feed-loop-feed-item-image {
+			@at-root .wp-block-feed-block-feed-item-image {
 				position: relative;
 			}
 		}

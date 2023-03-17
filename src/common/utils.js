@@ -38,7 +38,7 @@ export function trimWords( originalText, numWords = 55, more = null ) {
 	 * @param {string} more           The string to append to the trimmed summary.
 	 */
 	return applyFilters(
-		'feedLoop.trimWords',
+		'feedBlock.trimWords',
 		text,
 		originalText,
 		numWords,

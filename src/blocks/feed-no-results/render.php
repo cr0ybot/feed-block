@@ -4,12 +4,12 @@
  *
  * Displays blocks when no feed items are found.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
-namespace FeedLoop\Blocks\FeedNoResults;
+namespace FeedBlock\Blocks\FeedNoResults;
 
-use function FeedLoop\Feed\get_feed;
+use function FeedBlock\Feed\get_feed;
 
 
 $feed = get_feed( $block->context['feedURL'] );

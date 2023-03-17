@@ -1,5 +1,5 @@
 {
-	"name": "feed-loop-block",
+	"name": "feed-block",
 	"version": "0.2.0",
 	"description": "Advanced RSS and Atom feed block with configurable child blocks, similar to the Query Loop block.",
 	"author": {

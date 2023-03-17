@@ -4,7 +4,7 @@
 // Enqueued in editor.
 //
 
-.wp-block-feed-loop-feed-item-image {
+.wp-block-feed-block-feed-item-image {
 	// The following override the default placeholder styles that remove
 	// its border so that a user selection for border color or width displays
 	// a visual border. They also override the `img { border: none; }` applied
@@ -84,7 +84,7 @@
 	}
 }
 
-div[data-type="feed-loop/feed-item-image"] {
+div[data-type="feed-block/feed-item-image"] {
 	img {
 		max-width: 100%;
 		height: auto;

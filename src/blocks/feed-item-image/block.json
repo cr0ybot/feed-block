@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "feed-loop/feed-item-image",
+	"name": "feed-block/feed-item-image",
 	"version": "0.1.0",
 	"title": "Feed Item Image",
 	"category": "widgets",
 	"description": "Displays the first image from the feed item, similar to the Post Featured Image block.",
-	"ancestor": [ "feed-loop/feed-item-template" ],
+	"ancestor": [ "feed-block/feed-item-template" ],
 	"usesContext": [ "image", "url", "rel", "linkTarget" ],
 	"attributes": {
 		"isLink": {
@@ -54,7 +54,7 @@
 			"color": true,
 			"radius": true,
 			"width": true,
-			"__experimentalSelector": "img, .block-editor-media-placeholder, .wp-block-feed-loop-feed-item-image__overlay",
+			"__experimentalSelector": "img, .block-editor-media-placeholder, .wp-block-feed-block-feed-item-image__overlay",
 			"__experimentalSkipSerialization": true,
 			"__experimentalDefaultControls": {
 				"color": true,
@@ -64,7 +64,7 @@
 		},
 		"align": [ "left", "right", "center", "wide", "full" ],
 		"color": {
-			"__experimentalDuotone": "img, .wp-block-feed-loop-feed-item-image__placeholder, .components-placeholder__illustration, .components-placeholder::before",
+			"__experimentalDuotone": "img, .wp-block-feed-block-feed-item-image__placeholder, .components-placeholder__illustration, .components-placeholder::before",
 			"text": false,
 			"background": false
 		},
@@ -74,7 +74,7 @@
 			"padding": true
 		}
 	},
-	"textdomain": "feed-loop",
+	"textdomain": "feed-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
 	"style": "file:./style.css",

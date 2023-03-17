@@ -30,7 +30,7 @@ export default function Edit( {
 			: __( '(Feed Item Content)' );
 	let contentElement = (
 		<div { ...blockProps }>
-			{ __( '(Feed Item Content)', 'feed-loop' ) }
+			{ __( '(Feed Item Content)', 'feed-block' ) }
 		</div>
 	);
 	if ( content && content !== '' ) {

@@ -1,5 +1,5 @@
 /**
- * Block: feed-loop, edit.feed-content.
+ * Block: feed, edit.feed-content.
  */
 
 import { useSelect } from '@wordpress/data';
@@ -23,8 +23,8 @@ import { __ } from '@wordpress/i18n';
 import { edit, list, grid } from '@wordpress/icons';
 
 const TEMPLATE = [
-	[ 'feed-loop/feed-item-template' ],
-	[ 'feed-loop/feed-no-results' ],
+	[ 'feed-block/feed-item-template' ],
+	[ 'feed-block/feed-no-results' ],
 ];
 const DEFAULT_MIN_ITEMS = 1;
 const DEFAULT_MAX_ITEMS = 20;
@@ -92,7 +92,7 @@ export default function FeedContent( {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Feed Loop Settings', 'feed-loop' ) }>
+				<PanelBody title={ __( 'Feed Loop Settings', 'feed-block' ) }>
 					<RangeControl
 						__nextHasNoMarginBottom
 						label={ __( 'Number of items' ) }

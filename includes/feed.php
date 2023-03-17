@@ -1,11 +1,11 @@
 <?php
 /**
- * Feed Loop feed utilities.
+ * Feed Block feed utilities.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
-namespace FeedLoop\Feed;
+namespace FeedBlock\Feed;
 
 /**
  * Fetches an Feed Loop contents and returns a JSONFeed-compatible array.
@@ -16,7 +16,7 @@ namespace FeedLoop\Feed;
 function get_feed( $url ) {
 
 	// Use object cache if available.
-	$cached_json = wp_cache_get( $url, 'feed-loop' );
+	$cached_json = wp_cache_get( $url, 'feed-block' );
 	if ( false !== $cached_json ) {
 		return $cached_json;
 	}
@@ -152,7 +152,7 @@ function get_feed( $url ) {
 			 * @param \SimplePie_Item $feed_item The feed item object.
 			 * @return array
 			 */
-			$json['items'][] = apply_filters( 'feed_loop_feed_item', $item, $feed_item );
+			$json['items'][] = apply_filters( 'feed_block_feed_item', $item, $feed_item );
 		}
 	}
 
@@ -165,10 +165,10 @@ function get_feed( $url ) {
 	 * @param \SimplePie $feed The feed object.
 	 * @return array
 	 */
-	$json = apply_filters( 'feed_loop_feed', $json, $feed );
+	$json = apply_filters( 'feed_block_feed', $json, $feed );
 
 	// Cache the feed.
-	wp_cache_set( $url, $json, 'feed_loop' );
+	wp_cache_set( $url, $json, 'feed_block' );
 
 	return $json;
 }

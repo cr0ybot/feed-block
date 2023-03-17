@@ -1,5 +1,5 @@
 /**
- * Block: feed-loop, edit.
+ * Block: feed, edit.
  */
 
 import { __ } from '@wordpress/i18n';
@@ -33,22 +33,22 @@ export default function Edit( props ) {
 				<Placeholder icon={ rss } label="Feed Loop">
 					<form
 						onSubmit={ onSubmitFeedURL }
-						className="wp-block-feed-loop-feed-loop__placeholder-form"
+						className="wp-block-feed-block-feed__placeholder-form"
 					>
 						<TextControl
-							className="wp-block-feed-loop-feed-loop__placeholder-input"
-							label={ __( 'Feed URL (RSS/Atom)', 'feed-loop' ) }
+							className="wp-block-feed-block-feed__placeholder-input"
+							label={ __( 'Feed URL (RSS/Atom)', 'feed-block' ) }
 							value={ feedURL }
 							onChange={ ( value ) =>
 								setAttributes( { feedURL: value } )
 							}
 							placeholder={ __(
 								'https://example.com/feed',
-								'feed-loop'
+								'feed-block'
 							) }
 						/>
 						<Button variant="primary" type="submit">
-							{ __( 'Use URL', 'feed-loop' ) }
+							{ __( 'Use URL', 'feed-block' ) }
 						</Button>
 					</form>
 				</Placeholder>

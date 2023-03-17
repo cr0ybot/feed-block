@@ -1,11 +1,11 @@
 <?php
 /**
- * Utilities.
+ * Feed Block utilities.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
-namespace FeedLoop\Util;
+namespace FeedBlock\Util;
 
 /**
  * Generate markup for the HTML element that will be used for the overlay.

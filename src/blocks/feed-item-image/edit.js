@@ -110,7 +110,7 @@ function ImageDisplay( {
 		return (
 			<Placeholder
 				className={ classnames(
-					'wp-block-feed-loop-feed-item-image__placeholder',
+					'wp-block-feed-block-feed-item-image__placeholder',
 					'block-editor-media-placeholder',
 					borderProps.className,
 					placeholderURL && 'has-placeholder-image'
@@ -130,12 +130,12 @@ function ImageDisplay( {
 				setAttributes={ setAttributes }
 			/>
 			<InspectorControls>
-				<PanelBody title={ __( 'Link Settings', 'feed-loop' ) }>
+				<PanelBody title={ __( 'Link Settings', 'feed-block' ) }>
 					<ToggleControl
-						label={ __( 'Make image a link', 'feed-loop' ) }
+						label={ __( 'Make image a link', 'feed-block' ) }
 						description={ __(
 							'Link settings can be found on the main Feed Loop block.',
-							'feed-loop'
+							'feed-block'
 						) }
 						checked={ isLink }
 						onChange={ ( nextIsLink ) => {

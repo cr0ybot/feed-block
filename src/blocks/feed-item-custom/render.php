@@ -4,10 +4,10 @@
  *
  * Global vars: $attributes, $content, $block.
  *
- * @package feed-loop
+ * @package feed-block
  */
 
-use function FeedLoop\Util\get_block_border_attributes;
+use function FeedBlock\Util\get_block_border_attributes;
 
 if ( ! isset( $attributes['contentType'] ) || empty( $block->context['custom'] ) ) {
 	return;

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Feed Loop Block
- * Plugin URI:        https://github.com/cr0ybot/feed-loop
+ * Plugin URI:        https://github.com/cr0ybot/feed-block
  * Description:       Advanced RSS & Atom feed block with configurable child blocks, similar to the Query Loop block.
  * Requires at least: 6.1
  * Requires PHP:      7.0
@@ -10,12 +10,12 @@
  * Author URI:        https://coryhughart.com
  * License:           GPL-3.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       feed-loop
+ * Text Domain:       feed-block
  *
- * @package           feed-loop
+ * @package           feed-block
  */
 
-namespace FeedLoop;
+namespace FeedBlock;
 
 // Import includes.
 require_once __DIR__ . '/includes/util.php';

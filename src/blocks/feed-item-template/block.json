@@ -1,17 +1,17 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "feed-loop/feed-item-template",
+	"name": "feed-block/feed-item-template",
 	"version": "0.1.0",
 	"title": "Feed Item Template",
 	"category": "widgets",
 	"description": "Contains the block elements used to render a feed item, like the title, description, link, and more, similar to the Post Template block.",
-	"parent": [ "feed-loop/feed-loop" ],
+	"parent": [ "feed-block/feed" ],
 	"usesContext": [ "feedURL", "itemsToShow", "displayLayout" ],
 	"supports": {
 		"html": false
 	},
-	"textdomain": "feed-loop",
+	"textdomain": "feed-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./editor.css",
 	"style": "file:./style.css",
