@@ -20,7 +20,7 @@ import CustomTagSelect from '../../common/components/custom-tag-select';
 import HeadingLevelDropdown from './heading-level-dropdown';
 
 export default function Edit( {
-	attributes: { tag, level, textAlign, isLink },
+	attributes: { customTag, level, textAlign, isLink },
 	setAttributes,
 	context: { custom, title, url, rel, linkTarget },
 } ) {
@@ -32,15 +32,17 @@ export default function Edit( {
 			[ `has-text-align-${ textAlign }` ]: textAlign,
 		} ),
 	};
-	const customTag = tag.length === 2 ? tag[ 1 ] : '';
-	if ( customTag !== '' ) {
-		atts[ 'data-tag' ] = customTag;
+	const customTagname = customTag.length === 2 ? customTag[ 1 ] : false;
+	if ( customTagname ) {
+		atts[ 'data-tag' ] = customTagname;
 	}
 	const blockProps = useBlockProps( atts );
 
 	// Set up title content.
 	const customContent =
-		tag.length === 2 ? custom[ tag[ 0 ] ][ tag[ 1 ] ] : title;
+		customTag.length === 2
+			? custom[ customTag[ 0 ] ][ customTag[ 1 ] ]
+			: title;
 	const content =
 		customContent && customContent !== ''
 			? DOMPurify.sanitize( unescape( customContent ), {
@@ -84,7 +86,7 @@ export default function Edit( {
 					<CustomTagSelect
 						custom={ custom }
 						onChange={ ( tag ) => setAttributes( { tag } ) }
-						selected={ tag }
+						selected={ customTag }
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'Link Settings', 'feed-block' ) }>

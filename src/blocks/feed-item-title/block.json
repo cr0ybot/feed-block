@@ -9,7 +9,7 @@
 	"ancestor": [ "feed-block/feed-item-template" ],
 	"usesContext": [ "custom", "title", "url", "rel", "linkTarget" ],
 	"attributes": {
-		"tag": {
+		"customTag": {
 			"type": "array",
 			"default": []
 		},
