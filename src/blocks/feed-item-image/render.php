@@ -9,25 +9,57 @@
 
 use function FeedBlock\Util\get_block_feed_item_image_overlay_element_markup;
 use function FeedBlock\Util\get_block_border_attributes;
+use function FeedBlock\Util\get_img_url;
 
-if ( ( ! isset( $block->context['image'] ) || empty( $block->context['image'] ) && ( empty( $attributes['placeholderURL'] ) ) ) ) {
+$custom_tag     = is_array( $attributes['customTag'] ) && count( $attributes['customTag'] ) === 2 ? $attributes['customTag'] : false;
+$custom_tagname = $custom_tag ? $custom_tag[1] : false;
+$custom_content = $custom_tag ? $block->context['custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
+
+/*
+const content = customContent
+	? urlFromContent
+		? customContent
+		: getImgURL( customContent )
+	: image;
+const imgURL = isURL( content ) ? content : '';
+*/
+// Rewrite above javascript in php:
+$img_url = '';
+if ( $custom_content ) {
+	if ( $attributes['urlFromContent'] ) {
+		$img_url = $custom_content;
+	} else {
+		$img_url = get_img_url( $custom_content );
+	}
+} else {
+	$img_url = $block->context['image'];
+}
+// @see https://cmljnelson.blog/2018/08/31/url-validation-in-wordpress/
+if ( esc_url_raw( $img_url ) !== $img_url ) {
+	$img_url = '';
+}
+
+// If there is no image or placeholder, return early.
+if ( empty( $img_url) && empty( $attributes['placeholderURL'] ) ) {
 	return;
 }
 
-$image_url          = $block->context['image'];
-$wrapper_attributes = array();
+$atts = array();
 if ( empty( $image_url ) ) {
-	$image_url                              = $attributes['placeholderURL'];
-	$wrapper_attributes['data-placeholder'] = 'true';
+	$image_url                = $attributes['placeholderURL'];
+	$atts['data-placeholder'] = 'true';
+}
+if ( $custom_tagname ) {
+	$atts['data-feed-tag'] = $custom_tagname;
 }
 
 $is_link        = isset( $attributes['isLink'] ) && $attributes['isLink'];
 $size_slug      = isset( $attributes['sizeSlug'] ) ? $attributes['sizeSlug'] : 'post-thumbnail';
-$attr           = get_block_border_attributes( $attributes );
+$img_atts       = get_block_border_attributes( $attributes );
 $overlay_markup = get_block_feed_item_image_overlay_element_markup( $attributes );
 
 if ( $is_link ) {
-	$attr['alt'] = $block->context['title'];
+	$img_atts['alt'] = $block->context['title'];
 }
 
 $extra_styles = '';
@@ -44,16 +76,16 @@ if ( ! empty( $attributes['scale'] ) ) {
 }
 
 if ( ! empty( $extra_styles ) ) {
-	$attr['style'] = empty( $attr['style'] ) ? $extra_styles : $attr['style'] . $extra_styles;
+	$img_atts['style'] = empty( $img_atts['style'] ) ? $extra_styles : $img_atts['style'] . $extra_styles;
 }
 
-$attr      = array_map( 'esc_attr', $attr );
-$attr_html = '';
-foreach ( $attr as $name => $value ) {
-	$attr_html .= " $name=" . '"' . $value . '"';
+$img_atts      = array_map( 'esc_attr', $img_atts );
+$img_atts_html = '';
+foreach ( $img_atts as $name => $value ) {
+	$img_atts_html .= " $name=" . '"' . $value . '"';
 }
 
-$item_image = sprintf( '<img src="%1$s" %2$s />', esc_url( $image_url ), $attr_html );
+$item_image = sprintf( '<img src="%1$s" %2$s />', esc_url( $image_url ), $img_atts_html );
 
 if ( $is_link ) {
 	$rel        = ! empty( $block->context['rel'] ) ? 'rel="' . esc_attr( $block->context['rel'] ) . '"' : '';
@@ -83,9 +115,9 @@ $height       = ! empty( $attributes['height'] )
 	: '';
 
 if ( ! $height && ! $width && ! $aspect_ratio ) {
-	$wrapper_attributes = get_block_wrapper_attributes( $wrapper_attributes );
+	$wrapper_attributes = get_block_wrapper_attributes( $atts );
 } else {
-	$wrapper_attributes = get_block_wrapper_attributes( array_merge( $wrapper_attributes, array( 'style' => $aspect_ratio . $width . $height ) ) );
+	$wrapper_attributes = get_block_wrapper_attributes( array_merge( $atts, array( 'style' => $aspect_ratio . $width . $height ) ) );
 }
 ?>
 
