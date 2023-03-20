@@ -34,7 +34,7 @@ export default function Edit( {
 	};
 	const customTagname = customTag.length === 2 ? customTag[ 1 ] : false;
 	if ( customTagname ) {
-		atts[ 'data-tag' ] = customTagname;
+		atts[ 'data-feed-tag' ] = customTagname;
 	}
 	const blockProps = useBlockProps( atts );
 

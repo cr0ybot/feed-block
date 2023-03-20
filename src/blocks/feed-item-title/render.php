@@ -36,7 +36,7 @@ $atts = array(
 	'class' => $align_class_name,
 );
 if ( $custom_tagname ) {
-	$atts['data-tag'] = $custom_tagname;
+	$atts['data-feed-tag'] = $custom_tagname;
 }
 $wrapper_attributes = get_block_wrapper_attributes( $atts );
 
