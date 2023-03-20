@@ -5,7 +5,6 @@
 import classnames from 'classnames';
 import DOMPurify from 'dompurify';
 
-import { unescape } from 'lodash';
 import {
 	AlignmentControl,
 	BlockControls,
@@ -13,6 +12,7 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { ToggleControl, PanelBody } from '@wordpress/components';
+import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
 
 import CustomTagSelect from '../../common/components/custom-tag-select';
@@ -45,7 +45,7 @@ export default function Edit( {
 			: title;
 	const content =
 		customContent && customContent !== ''
-			? DOMPurify.sanitize( unescape( customContent ), {
+			? DOMPurify.sanitize( decodeEntities( customContent ), {
 					ALLOWED_TAGS: [],
 			  } )
 			: __( '<Feed Item Title>' );
@@ -85,7 +85,9 @@ export default function Edit( {
 				<PanelBody title={ __( 'Content Settings', 'feed-block' ) }>
 					<CustomTagSelect
 						custom={ custom }
-						onChange={ ( tag ) => setAttributes( { tag } ) }
+						onChange={ ( newCustomTag ) =>
+							setAttributes( { customTag: newCustomTag } )
+						}
 						selected={ customTag }
 					/>
 				</PanelBody>

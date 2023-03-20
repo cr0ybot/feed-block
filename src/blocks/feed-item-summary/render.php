@@ -11,7 +11,13 @@ if ( ! isset( $block->context['summary'] ) || empty( $block->context['summary'] 
 	return;
 }
 
-$content = $block->context['summary'];
+$custom_tag     = is_array( $attributes['customTag'] ) && count( $attributes['customTag'] ) === 2 ? $attributes['customTag'] : false;
+$custom_tagname = $custom_tag ? $custom_tag[1] : false;
+$custom_content = $custom_tag ? $block->context['custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
+
+$content = wp_strip_all_tags(
+	wp_specialchars_decode( $custom_content ? $custom_content : $block->context['summary'] )
+);
 if ( $attributes['constrainLength'] ) {
 	$content = wp_trim_words( $content, $attributes['summaryLength'] );
 }
@@ -30,7 +36,13 @@ if ( $attributes['showMore'] && ! empty( $attributes['moreText'] ) ) {
 
 $align_class_name = empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}";
 
-$wrapper_attributes = get_block_wrapper_attributes( array( 'class' => $align_class_name ) );
+$atts = array(
+	'class' => $align_class_name,
+);
+if ( $custom_tagname ) {
+	$atts['data-tag'] = $custom_tagname;
+}
+$wrapper_attributes = get_block_wrapper_attributes( $atts );
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>
