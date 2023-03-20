@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "feed-block/feed-item-summary",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"title": "Feed Item Summary",
 	"category": "widgets",
 	"description": "Displays the summary of a feed item, similar to the Post Excerpt block.",
