@@ -7,10 +7,6 @@
  * @package feed-block
  */
 
-if ( ! isset( $block->context['summary'] ) || empty( $block->context['summary'] ) ) {
-	return;
-}
-
 $custom_tag     = is_array( $attributes['customTag'] ) && count( $attributes['customTag'] ) === 2 ? $attributes['customTag'] : false;
 $custom_tagname = $custom_tag ? $custom_tag[1] : false;
 $custom_content = $custom_tag ? $block->context['custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
