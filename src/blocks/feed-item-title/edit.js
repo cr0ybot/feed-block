@@ -45,9 +45,11 @@ export default function Edit( {
 			: title;
 	const content =
 		customContent && customContent !== ''
-			? DOMPurify.sanitize( decodeEntities( customContent ), {
-					ALLOWED_TAGS: [],
-			  } )
+			? decodeEntities(
+					DOMPurify.sanitize( customContent, {
+						ALLOWED_TAGS: [],
+					} )
+			  )
 			: __( '<Feed Item Title>' );
 	let titleElement = <Tag { ...blockProps }>{ content }</Tag>;
 	if ( isLink && url ) {

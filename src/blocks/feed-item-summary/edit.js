@@ -58,9 +58,11 @@ export default function Edit( {
 			: summary;
 	const untrimmedContent =
 		customContent && customContent !== ''
-			? DOMPurify.sanitize( decodeEntities( customContent ), {
-					ALLOWED_TAGS: [],
-			  } )
+			? decodeEntities(
+					DOMPurify.sanitize( customContent, {
+						ALLOWED_TAGS: [],
+					} )
+			  )
 			: __( '<Feed Item Summary>', 'feed-block' );
 	const summaryContent = constrainLength
 		? trimWords( untrimmedContent, summaryLength )
