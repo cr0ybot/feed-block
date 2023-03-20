@@ -62,10 +62,19 @@
 
 	&__placeholder .components-placeholder {
 		&__preview {
-			position: absolute;
-			inset: 0;
+			display: block;
 			width: 100%;
-			height: 100%;
+
+			.url-not-valid {
+				font-size: 0.8rem;
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				background: rgba(255, 255, 255, 0.75);
+				padding: 5px;
+			}
 		}
 
 		&__illustration {
