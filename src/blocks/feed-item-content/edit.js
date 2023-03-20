@@ -3,8 +3,8 @@
  */
 
 import classnames from 'classnames';
+import DOMPurify from 'dompurify';
 
-import { unescape } from 'lodash';
 import {
 	AlignmentControl,
 	BlockControls,
@@ -12,31 +12,60 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { PanelBody, SelectControl } from '@wordpress/components';
+import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
 
+import CustomTagSelect from '../../common/components/custom-tag-select';
+
+const contentTypeMap = {
+	html: 'content_html',
+	htmlNoImg: 'content_html_noimg',
+	text: 'content_text',
+};
+
 export default function Edit( {
-	attributes: { textAlign, contentType },
+	attributes: { customTag, textAlign, contentType },
 	setAttributes,
 	context,
 } ) {
-	const blockProps = useBlockProps( {
+	const { custom } = context;
+
+	// Set up block props.
+	const atts = {
 		className: classnames( {
 			[ `has-text-align-${ textAlign }` ]: textAlign,
 		} ),
-	} );
-	const content =
-		context[ contentType ] !== ''
-			? context[ contentType ]
-			: __( '(Feed Item Content)' );
+	};
+	const customTagname = customTag.length === 2 ? customTag[ 1 ] : false;
+	if ( customTagname ) {
+		atts[ 'data-tag' ] = customTagname;
+	}
+	const blockProps = useBlockProps( atts );
+
+	const customContent =
+		customTag.length === 2
+			? custom[ customTag[ 0 ] ][ customTag[ 1 ] ]
+			: false;
+	const content = customContent
+		? contentType === 'htmlNoImg'
+			? customContent.replace( /<img[^>]*>/g, '' )
+			: customContent
+		: context[ contentTypeMap[ contentType ] ];
 	let contentElement = (
 		<div { ...blockProps }>
-			{ __( '(Feed Item Content)', 'feed-block' ) }
+			{ __( '<Feed Item Content>', 'feed-block' ) }
 		</div>
 	);
 	if ( content && content !== '' ) {
-		if ( contentType === 'content_text' ) {
+		if ( contentType === 'text' ) {
 			contentElement = (
-				<div { ...blockProps }>{ unescape( content ) }</div>
+				<div { ...blockProps }>
+					{ decodeEntities(
+						DOMPurify.sanitize( content, {
+							ALLOWED_TAGS: [],
+						} )
+					) }
+				</div>
 			);
 		} else {
 			contentElement = (
@@ -60,18 +89,25 @@ export default function Edit( {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody title={ __( 'Content Settings' ) }>
+					<CustomTagSelect
+						custom={ custom }
+						onChange={ ( newCustomTag ) =>
+							setAttributes( { customTag: newCustomTag } )
+						}
+						selected={ customTag }
+					/>
 					<SelectControl
 						label={ __( 'Content Type' ) }
 						value={ contentType }
 						options={ [
-							{ label: __( 'HTML' ), value: 'content_html' },
-							{
-								label: __( 'HTML (images removed)' ),
-								value: 'content_html_noimg',
-							},
 							{
 								label: __( 'Plain Text' ),
-								value: 'content_text',
+								value: 'text',
+							},
+							{ label: __( 'HTML' ), value: 'html' },
+							{
+								label: __( 'HTML (images removed)' ),
+								value: 'htmlNoImg',
 							},
 						] }
 						onChange={ ( nextType ) => {

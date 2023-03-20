@@ -7,15 +7,24 @@
 	"category": "widgets",
 	"description": "Displays the content of a feed item, similar to the Post Content block.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "content_html", "content_html_noimg", "content_text" ],
+	"usesContext": [
+		"custom",
+		"content_html",
+		"content_html_noimg",
+		"content_text"
+	],
 	"attributes": {
+		"customTag": {
+			"type": "array",
+			"default": []
+		},
 		"textAlign": {
 			"type": "string"
 		},
 		"contentType": {
 			"type": "string",
-			"default": "content_html",
-			"enum": [ "content_html", "content_html_noimg", "content_text" ]
+			"default": "text",
+			"enum": [ "text", "html", "htmlNoImg" ]
 		}
 	},
 	"supports": {
