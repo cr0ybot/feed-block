@@ -32,11 +32,17 @@ export default function Edit( {
 	setAttributes,
 	context: { custom, summary },
 } ) {
-	const blockProps = useBlockProps( {
+	// Set up block props.
+	const atts = {
 		className: classnames( {
 			[ `has-text-align-${ textAlign }` ]: textAlign,
 		} ),
-	} );
+	};
+	const customTagname = customTag.length === 2 ? customTag[ 1 ] : false;
+	if ( customTagname ) {
+		atts[ 'data-tag' ] = customTagname;
+	}
+	const blockProps = useBlockProps( atts );
 
 	const readMoreLink = (
 		<RichText
