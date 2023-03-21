@@ -5,7 +5,32 @@
 import { TreeSelect } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-export function CustomTagSelect( { custom, onChange, selected } ) {
+export function CustomTagSelect( {
+	custom,
+	additional,
+	onChange,
+	selected,
+	noOption = __( 'Use default content', 'feed-block' ),
+} ) {
+	const tree = Object.entries( custom ).map( ( [ namespace, tags ] ) => ( {
+		name: namespace,
+		id: '',
+		children: Object.entries( tags ).map( ( [ tag ] ) => ( {
+			name: tag,
+			id: `${ namespace }|${ tag }`,
+		} ) ),
+	} ) );
+
+	// If there are additional options, add them to the top of the tree.
+	if ( Array.isArray( additional ) ) {
+		tree.unshift(
+			...additional.map( ( item ) => ( {
+				name: item,
+				id: item,
+			} ) )
+		);
+	}
+
 	return (
 		<>
 			<p className="description">
@@ -17,17 +42,8 @@ export function CustomTagSelect( { custom, onChange, selected } ) {
 			<TreeSelect
 				label={ __( 'Custom Content Tag', 'feed-block' ) }
 				selectedId={ selected.join( '|' ) }
-				noOptionLabel={ __( 'Use default content', 'feed-block' ) }
-				tree={ Object.entries( custom ).map(
-					( [ namespace, tags ] ) => ( {
-						name: namespace,
-						id: '',
-						children: Object.entries( tags ).map( ( [ tag ] ) => ( {
-							name: tag,
-							id: `${ namespace }|${ tag }`,
-						} ) ),
-					} )
-				) }
+				noOptionLabel={ noOption }
+				tree={ tree }
 				onChange={ ( nextTag ) => {
 					if ( nextTag === '' ) {
 						onChange( [] );
