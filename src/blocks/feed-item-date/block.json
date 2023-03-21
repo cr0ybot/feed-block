@@ -1,0 +1,88 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "feed-block/feed-item-date",
+	"version": "0.1.0",
+	"title": "Feed Item Date",
+	"category": "widgets",
+	"description": "Displays a date from the feed item in a custom format.",
+	"ancestor": [ "feed-block/feed-item-template" ],
+	"usesContext": [ "custom", "date" ],
+	"attributes": {
+		"textAlign": {
+			"type": "string"
+		},
+		"customTag": {
+			"type": "array",
+			"default": [ "date_published" ]
+		},
+		"isLink": {
+			"type": "boolean",
+			"default": false
+		},
+		"inputFormat": {
+			"type": "string",
+			"default": ""
+		},
+		"displayFormat": {
+			"type": "string",
+			"default": ""
+		},
+		"dateType": {
+			"type": "string",
+			"default": "datetime",
+			"enum": [ "datetime", "date", "time" ]
+		}
+	},
+	"supports": {
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		},
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true,
+				"link": true
+			}
+		},
+		"dimensions": {
+			"minHeight": true
+		},
+		"html": false,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"__experimentalFontFamily": true,
+			"__experimentalFontWeight": true,
+			"__experimentalFontStyle": true,
+			"__experimentalTextTransform": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true,
+				"fontAppearance": true
+			}
+		}
+	},
+	"textdomain": "feed-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}
