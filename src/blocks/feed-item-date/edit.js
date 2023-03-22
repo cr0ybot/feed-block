@@ -42,7 +42,7 @@ const datetimeFormat = {
 	time: 'H:i:s',
 };
 
-function dateFormatter( dateString, inputFormat, outputFormat = '' ) {
+function dateFormatter( dateString, inputFormat = '', outputFormat = '' ) {
 	console.log( {
 		dateString,
 		inputFormat,
@@ -53,7 +53,11 @@ function dateFormatter( dateString, inputFormat, outputFormat = '' ) {
 		return dateString;
 	}
 
-	const date = fmt.parseDate( dateString, inputFormat );
+	const date =
+		inputFormat !== '' && inputFormat !== 'c' // DateFormatter isn't parsing c properly.
+			? fmt.parseDate( dateString, inputFormat )
+			: new Date( dateString );
+	console.log( { date } );
 	return format( outputFormat, date );
 }
 
@@ -71,6 +75,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 	const [ siteDateFormat ] = useEntityProp( 'root', 'site', 'date_format' );
 	const [ siteTimeFormat ] = useEntityProp( 'root', 'site', 'time_format' );
 
+	const isCustomTag = customTag.length === 2;
 	const customTagname =
 		customTag.length === 2
 			? customTag[ 1 ]
@@ -98,7 +103,6 @@ export default function Edit( { attributes, setAttributes, context } ) {
 	}
 	const blockProps = useBlockProps( atts );
 
-	// Note: when using default date_published/date_modified, input date has already been parsed.
 	const defaultInputFormat =
 		dateType === 'datetime'
 			? `${ datetimeFormat[ 'date' ] } ${ datetimeFormat[ 'time' ] }`
@@ -111,10 +115,14 @@ export default function Edit( { attributes, setAttributes, context } ) {
 			? siteDateFormat
 			: `${ siteDateFormat } ${ siteTimeFormat }`; // datetime (default)
 
-	const inputFormat =
+	const customInputFormat =
 		providedInputFormat && providedInputFormat !== ''
 			? providedInputFormat
 			: defaultInputFormat;
+	// Note: when using default date_published/date_modified, input is ISO format.
+	const inputFormat = isCustomTag
+		? customInputFormat
+		: datetimeFormat[ 'datetime' ];
 
 	const displayFormat =
 		providedDisplayFormat && providedDisplayFormat !== ''
@@ -177,23 +185,25 @@ export default function Edit( { attributes, setAttributes, context } ) {
 							) }
 						</a>
 					</p>
-					<SelectControl
-						label={ __( 'Date Type', 'feed-block' ) }
-						help={ __(
-							'This setting will improve the accessibility of the output and determine the default input/output formats.',
-							'feed-block'
-						) }
-						value={ dateType }
-						options={ Object.entries( dateTypes ).map(
-							( [ value, label ] ) => ( {
-								value,
-								label,
-							} )
-						) }
-						onChange={ ( nextType ) => {
-							setAttributes( { dateType: nextType } );
-						} }
-					/>
+					{ isCustomTag && (
+						<SelectControl
+							label={ __( 'Date Type', 'feed-block' ) }
+							help={ __(
+								'This setting will improve the accessibility of the output and determine the default input/output formats.',
+								'feed-block'
+							) }
+							value={ dateType }
+							options={ Object.entries( dateTypes ).map(
+								( [ value, label ] ) => ( {
+									value,
+									label,
+								} )
+							) }
+							onChange={ ( nextType ) => {
+								setAttributes( { dateType: nextType } );
+							} }
+						/>
+					) }
 					{ customTag.length === 2 && (
 						<TextControl
 							label={ __( 'Date Input Format', 'feed-block' ) }
