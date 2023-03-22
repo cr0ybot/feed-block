@@ -38,11 +38,11 @@
 		}
 	},
 	"providesContext": {
-		"feedURL": "feedURL",
-		"itemsToShow": "itemsToShow",
-		"displayLayout": "displayLayout",
-		"rel": "rel",
-		"linkTarget": "linkTarget"
+		"feed-block/feedURL": "feedURL",
+		"feed-block/itemsToShow": "itemsToShow",
+		"feed-block/displayLayout": "displayLayout",
+		"feed-block/rel": "rel",
+		"feed-block/linkTarget": "linkTarget"
 	},
 	"supports": {
 		"align": [ "wide", "full" ],

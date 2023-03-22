@@ -28,7 +28,7 @@ export default function Edit( {
 	setAttributes,
 	context,
 } ) {
-	const { custom } = context;
+	const { 'feed-block/item/custom': custom } = context;
 
 	// Set up block props.
 	const atts = {
@@ -50,7 +50,7 @@ export default function Edit( {
 		? contentType === 'htmlNoImg'
 			? customContent.replace( /<img[^>]*>/g, '' )
 			: customContent
-		: context[ contentTypeMap[ contentType ] ];
+		: context[ `feed-block/item/${ contentTypeMap[ contentType ] }` ];
 	let contentElement = (
 		<div { ...blockProps }>
 			{ __( '<Feed Item Content>', 'feed-block' ) }

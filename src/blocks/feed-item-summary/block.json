@@ -7,7 +7,13 @@
 	"category": "widgets",
 	"description": "Displays the summary of a feed item, similar to the Post Excerpt block.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "custom", "summary", "url", "rel", "linkTarget" ],
+	"usesContext": [
+		"feed-block/item/custom",
+		"feed-block/item/summary",
+		"feed-block/item/url",
+		"feed-block/rel",
+		"feed-block/linkTarget"
+	],
 	"attributes": {
 		"customTag": {
 			"type": "array",

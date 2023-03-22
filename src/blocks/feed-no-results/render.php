@@ -12,7 +12,7 @@ namespace FeedBlock\Blocks\FeedNoResults;
 use function FeedBlock\Feed\get_feed;
 
 
-$feed = get_feed( $block->context['feedURL'] );
+$feed = get_feed( $block->context['feed-block/feedURL'] );
 
 // If there are feed items, do not render this block.
 if ( ( ! is_wp_error( $feed ) && ! empty( $feed['items'] ) ) ) {

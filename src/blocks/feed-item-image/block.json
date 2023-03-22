@@ -7,7 +7,13 @@
 	"category": "widgets",
 	"description": "Displays the first image from the feed item, similar to the Post Featured Image block.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "custom", "image", "url", "rel", "linkTarget" ],
+	"usesContext": [
+		"feed-block/item/custom",
+		"feed-block/item/image",
+		"feed-block/item/url",
+		"feed-block/rel",
+		"feed-block/linkTarget"
+	],
 	"attributes": {
 		"customTag": {
 			"type": "array",

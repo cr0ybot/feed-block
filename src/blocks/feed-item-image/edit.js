@@ -60,7 +60,13 @@ export default function Edit( {
 	clientId,
 	attributes,
 	setAttributes,
-	context: { custom, image, url, rel, linkTarget },
+	context: {
+		'feed-block/item/custom': custom,
+		'feed-block/item/image': image,
+		'feed-block/item/url': url,
+		'feed-block/rel': rel,
+		'feed-block/linkTarget': linkTarget,
+	},
 } ) {
 	const {
 		customTag,

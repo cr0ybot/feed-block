@@ -7,7 +7,11 @@
 	"category": "widgets",
 	"description": "Contains the block elements used to render a feed item, like the title, description, link, and more, similar to the Post Template block.",
 	"parent": [ "feed-block/feed" ],
-	"usesContext": [ "feedURL", "itemsToShow", "displayLayout" ],
+	"usesContext": [
+		"feed-block/feedURL",
+		"feed-block/itemsToShow",
+		"feed-block/displayLayout"
+	],
 	"supports": {
 		"html": false
 	},

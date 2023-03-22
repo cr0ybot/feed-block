@@ -7,7 +7,13 @@
 	"category": "widgets",
 	"description": "Displays the title of a feed item, similar to the Post Title block.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "custom", "title", "url", "rel", "linkTarget" ],
+	"usesContext": [
+		"feed-block/item/custom",
+		"feed-block/item/title",
+		"feed-block/item/url",
+		"feed-block/rel",
+		"feed-block/linkTarget"
+	],
 	"attributes": {
 		"customTag": {
 			"type": "array",

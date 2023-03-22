@@ -22,7 +22,13 @@ import HeadingLevelDropdown from './heading-level-dropdown';
 export default function Edit( {
 	attributes: { customTag, level, textAlign, isLink },
 	setAttributes,
-	context: { custom, title, url, rel, linkTarget },
+	context: {
+		'feed-block/item/custom': custom,
+		'feed-block/item/title': title,
+		'feed-block/item/url': url,
+		'feed-block/rel': rel,
+		'feed-block/linkTarget': linkTarget,
+	},
 } ) {
 	const Tag = 0 === level ? 'p' : `h${ level }`;
 

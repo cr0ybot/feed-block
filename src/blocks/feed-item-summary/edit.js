@@ -30,7 +30,10 @@ export default function Edit( {
 		showMoreOnNewLine,
 	},
 	setAttributes,
-	context: { custom, summary },
+	context: {
+		'feed-block/item/custom': custom,
+		'feed-block/item/summary': summary,
+	},
 } ) {
 	// Set up block props.
 	const atts = {

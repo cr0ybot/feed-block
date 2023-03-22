@@ -23,7 +23,7 @@ if ( is_array( $attributes['customTag'] ) && ! empty( $attributes['customTag'] )
 	$is_custom_tag = count( $attributes['customTag'] ) === 2;
 	$custom_tag = $attributes['customTag'];
 	$custom_tagname = $is_custom_tag ? $attributes['customTag'][1] : $attributes['customTag'][0];
-	$custom_content = $is_custom_tag ? $block->context['custom'][ $custom_tag[0] ][ $custom_tag[1] ] : $block->context[ $custom_tag[0] ];
+	$custom_content = $is_custom_tag ? $block->context['feed-block/item/custom'][ $custom_tag[0] ][ $custom_tag[1] ] : $block->context[ 'feed-block/item/' . $custom_tag[0] ];
 }
 
 $default_input_format = $attributes['dateType'] === 'datetime' ? $datetime_format['date'] . ' ' . $datetime_format['time'] : $datetime_format[ $attributes['dateType'] ];

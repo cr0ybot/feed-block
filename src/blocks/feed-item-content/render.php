@@ -15,14 +15,14 @@ $contentTypeMap = array(
 
 $custom_tag     = is_array( $attributes['customTag'] ) && count( $attributes['customTag'] ) === 2 ? $attributes['customTag'] : false;
 $custom_tagname = $custom_tag ? $custom_tag[1] : false;
-$custom_content = $custom_tag ? $block->context['custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
+$custom_content = $custom_tag ? $block->context['feed-block/item/custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
 
 $content = $custom_content
 	? (
 		'htmlNoImg' === $attributes['contentType']
 			? preg_replace( '/<img[^>]*>/g', '', $custom_content )
 			: $custom_content
-	) : $block->context[ $contentTypeMap[ $attributes['contentType'] ] ];
+	) : $block->context[ 'feed-block/item/' . $contentTypeMap[ $attributes['contentType'] ] ];
 if ( 'text' === $attributes['contentType'] ) {
 	$content = wp_strip_all_tags( $content );
 }

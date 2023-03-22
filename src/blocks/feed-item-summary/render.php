@@ -9,10 +9,10 @@
 
 $custom_tag     = is_array( $attributes['customTag'] ) && count( $attributes['customTag'] ) === 2 ? $attributes['customTag'] : false;
 $custom_tagname = $custom_tag ? $custom_tag[1] : false;
-$custom_content = $custom_tag ? $block->context['custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
+$custom_content = $custom_tag ? $block->context['feed-block/item/custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
 
 $content = wp_strip_all_tags(
-	wp_specialchars_decode( $custom_content ? $custom_content : $block->context['summary'] )
+	wp_specialchars_decode( $custom_content ? $custom_content : $block->context['feed-block/item/summary'] )
 );
 if ( $attributes['constrainLength'] ) {
 	$content = wp_trim_words( $content, $attributes['summaryLength'] );
@@ -20,11 +20,11 @@ if ( $attributes['constrainLength'] ) {
 
 $readMoreLink = '';
 if ( $attributes['showMore'] && ! empty( $attributes['moreText'] ) ) {
-	$rel          = ! empty( $block->context['rel'] ) ? 'rel="' . esc_attr( $block->context['rel'] ) . '"' : '';
+	$rel          = ! empty( $block->context['feed-block/rel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/rel'] ) . '"' : '';
 	$readMoreLink = sprintf(
 		'<a href="%1$s" class="wp-block-feed-block-feed-item-summary__more-link" target="%2$s" %3$s>%4$s</a>',
-		esc_url( $block->context['url'] ),
-		esc_attr( $block->context['linkTarget'] ?? '_blank' ),
+		esc_url( $block->context['feed-block/item/url'] ),
+		esc_attr( $block->context['feed-block/linkTarget'] ?? '_blank' ),
 		$rel,
 		esc_html( $attributes['moreText'] )
 	);

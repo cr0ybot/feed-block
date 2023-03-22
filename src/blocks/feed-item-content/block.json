@@ -8,10 +8,10 @@
 	"description": "Displays the content of a feed item, similar to the Post Content block.",
 	"ancestor": [ "feed-block/feed-item-template" ],
 	"usesContext": [
-		"custom",
-		"content_html",
-		"content_html_noimg",
-		"content_text"
+		"feed-block/item/custom",
+		"feed-block/item/content_html",
+		"feed-block/item/content_html_noimg",
+		"feed-block/item/content_text"
 	],
 	"attributes": {
 		"customTag": {

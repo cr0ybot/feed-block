@@ -56,7 +56,7 @@ function dateFormatter( dateString, inputFormat = '', outputFormat = '' ) {
 	const date =
 		inputFormat !== '' && inputFormat !== 'c' // DateFormatter isn't parsing c properly.
 			? fmt.parseDate( dateString, inputFormat )
-			: new Date( dateString );
+			: new Date( dateString ); // Already handles ATOM date format.
 	console.log( { date } );
 	return format( outputFormat, date );
 }
@@ -70,7 +70,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 		displayFormat: providedDisplayFormat,
 		dateType,
 	} = attributes;
-	const { custom } = context;
+	const { 'feed-block/item/custom': custom } = context;
 
 	const [ siteDateFormat ] = useEntityProp( 'root', 'site', 'date_format' );
 	const [ siteTimeFormat ] = useEntityProp( 'root', 'site', 'time_format' );
@@ -85,7 +85,9 @@ export default function Edit( { attributes, setAttributes, context } ) {
 	const content =
 		customTag.length === 2
 			? custom[ customTag[ 0 ] ][ customTag[ 1 ] ]
-			: context?.[ customTagname || 'date_published' ];
+			: context?.[
+					`feed-block/item/${ customTagname || 'date_published' }`
+			  ];
 
 	// Set up block props.
 	const borderProps = useBorderProps( attributes );

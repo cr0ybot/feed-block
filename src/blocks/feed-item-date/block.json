@@ -7,7 +7,11 @@
 	"category": "widgets",
 	"description": "Displays a date from the feed item in a custom format.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "custom", "date_published", "date_modified" ],
+	"usesContext": [
+		"feed-block/item/custom",
+		"feed-block/item/date_published",
+		"feed-block/item/date_modified"
+	],
 	"attributes": {
 		"textAlign": {
 			"type": "string"

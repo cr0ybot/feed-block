@@ -8,7 +8,7 @@
 	"icon": "rss",
 	"description": "Contains the block elements used to render content when no feed items are found.",
 	"parent": [ "feed-block/feed" ],
-	"usesContext": [ "feedURL" ],
+	"usesContext": [ "feed-block/feedURL" ],
 	"supports": {
 		"__experimentalLayout": true,
 		"anchor": true,
