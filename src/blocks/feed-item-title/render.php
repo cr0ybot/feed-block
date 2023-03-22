@@ -44,5 +44,5 @@ printf(
 	'<%1$s %2$s>%3$s</%1$s>',
 	$tagname, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$wrapper_attributes, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	esc_html( $content )
+	$content // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 );
