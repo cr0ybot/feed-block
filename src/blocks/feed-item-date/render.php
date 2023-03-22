@@ -9,54 +9,69 @@
 
 use function FeedBlock\Util\get_block_border_attributes;
 
-if ( ! isset( $attributes['contentType'] ) || empty( $block->context['custom'] ) ) {
-	return;
-}
-
 $datetime_format = array(
 	'datetime' => 'c',
 	'date'     => 'Y-m-d',
 	'time'     => 'H:i:s',
 );
 
-$el       = 'div';
-$feed_tag = is_array( $attributes['tag'] ) && count( $attributes['tag'] ) === 2 ? $attributes['tag'] : false;
-$content  = $feed_tag ? $block->context['custom'][ $feed_tag[0] ][ $feed_tag[1] ] : '';
+$is_custom_tag = false;
+$custom_tag = false;
+$custom_tagname = false;
+$custom_content = false;
+if ( is_array( $attributes['customTag'] ) && ! empty( $attributes['customTag'] ) ) {
+	$is_custom_tag = count( $attributes['customTag'] ) === 2;
+	$custom_tag = $attributes['customTag'];
+	$custom_tagname = $is_custom_tag ? $attributes['customTag'][1] : $attributes['customTag'][0];
+	$custom_content = $is_custom_tag ? $block->context['custom'][ $custom_tag[0] ][ $custom_tag[1] ] : $block->context[ $custom_tag[0] ];
+}
 
-$attr          = get_block_border_attributes( $attributes );
-$attr['class'] = implode(
+$default_input_format = $attributes['dateType'] === 'datetime' ? $datetime_format['date'] . ' ' . $datetime_format['time'] : $datetime_format[ $attributes['dateType'] ];
+
+$default_display_format = $attributes['dateType'] === 'time'
+	? get_option( 'time_format' )
+	: ( $attributes['dateType'] === 'date'
+		? get_option( 'date_format' )
+		: get_option( 'date_format' ) . ' ' . get_option( 'time_format' ) );
+
+$custom_input_format = $attributes['inputFormat'] ?: $default_input_format;
+// Note: when using default date_published/date_modified, input is ATOM format.
+$input_format = $is_custom_tag ? $custom_input_format : DateTIme::ATOM;
+$display_format = $attributes['displayFormat'] ?: $default_display_format;
+
+$atts          = get_block_border_attributes( $attributes );
+$atts['class'] = implode(
 	' ',
 	array(
-		$attr['class'] ?? null,
+		$atts['class'] ?? null,
 		empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}",
 	)
 );
-
-switch ( $attributes['contentType'] ) {
-	case 'text':
-		$content = wp_specialchars_decode( wp_strip_all_tags( $content ) );
-		// Handle contentLength.
-		if ( $attributes['constrainLength'] && ! empty( $attributes['textLength'] ) ) {
-			$content = wp_trim_words( $content, $attributes['textLength'] );
-		}
-		break;
-	case 'html_noimg':
-		$content = preg_replace( '/<img[^>]+\>/i', '', $content );
-		break;
-	case 'datetime':
-		$el = 'time';
-		// Handle datetime formatting with dateInputFormat, dateDisplayFormat, and dateType.
-		$datetime         = DateTime::createFromFormat( $attributes['dateInputFormat'], $content );
-		$attr['datetime'] = $datetime->format( $datetime_format[ $attributes['dateType'] ] );
-		$content          = $datetime->format( $attributes['dateDisplayFormat'] );
-		break;
+if ( $custom_tagname ) {
+	$atts['data-feed-tag'] = $custom_tagname;
 }
 
-$wrapper_attributes = get_block_wrapper_attributes( $attr );
+// Handle datetime formatting with inputFormat, displayFormat, and dateType.
+$content  = '';
+$datetime = DateTime::createFromFormat( $input_format, $custom_content );
+if ( $datetime ) {
+	$atts['datetime'] = $datetime->format( $datetime_format[ $attributes['dateType'] ] );
+	$content          = $is_custom_tag
+		? $datetime->format( $display_format ) // Date without timezone info.
+		: wp_date( $display_format, $datetime->getTimestamp() ); // Localized date.
+}
+else {
+	$content = $custom_content;
+}
+
+if ( $content === '' ) {
+	return;
+}
+
+$wrapper_attributes = get_block_wrapper_attributes( $atts );
 
 printf(
-	'<%1$s %2$s>%3$s</%1$s>',
-	$el,
+	'<time %1$s>%2$s</time>',
 	$wrapper_attributes,
-	$content
+	esc_html( $content )
 );
