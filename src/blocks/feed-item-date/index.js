@@ -4,7 +4,7 @@
 
 import { registerBlockType } from '@wordpress/blocks';
 
-import { postContent as icon } from '@wordpress/icons';
+import { postDate as icon } from '@wordpress/icons';
 
 import './style.scss';
 import './editor.scss';
