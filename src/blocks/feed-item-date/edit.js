@@ -43,12 +43,6 @@ const datetimeFormat = {
 };
 
 function dateFormatter( dateString, inputFormat = '', outputFormat = '' ) {
-	console.log( {
-		dateString,
-		inputFormat,
-		outputFormat,
-	} );
-
 	if ( outputFormat === '' ) {
 		return dateString;
 	}
@@ -57,7 +51,6 @@ function dateFormatter( dateString, inputFormat = '', outputFormat = '' ) {
 		inputFormat !== '' && inputFormat !== 'c' // DateFormatter isn't parsing c properly.
 			? fmt.parseDate( dateString, inputFormat )
 			: new Date( dateString ); // Already handles ATOM date format.
-	console.log( { date } );
 	return format( outputFormat, date );
 }
 
