@@ -11,9 +11,7 @@ $custom_tag     = is_array( $attributes['customTag'] ) && count( $attributes['cu
 $custom_tagname = $custom_tag ? $custom_tag[1] : false;
 $custom_content = $custom_tag ? $block->context['feed-block/item/custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
 
-$content = wp_strip_all_tags(
-	wp_specialchars_decode( $custom_content ? $custom_content : $block->context['feed-block/item/summary'] )
-);
+$content = wp_strip_all_tags( $custom_content ? $custom_content : $block->context['feed-block/item/summary'] );
 if ( $attributes['constrainLength'] ) {
 	$content = wp_trim_words( $content, $attributes['summaryLength'] );
 }
@@ -53,7 +51,7 @@ else :
 		<?php
 	else :
 		?>
-	<p><?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> <?php echo $readMoreLink; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+	<p><?php echo esc_html( $content ); ?> <?php echo $readMoreLink; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 		<?php
 	endif;
 endif;

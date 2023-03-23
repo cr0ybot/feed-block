@@ -26,10 +26,6 @@ $content = $custom_content
 if ( 'text' === $attributes['contentType'] ) {
 	$content = wp_strip_all_tags( $content );
 }
-else {
-	$content = wp_kses_post( $content );
-}
-$content = wp_specialchars_decode( $content );
 
 $align_class_name = empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}";
 
@@ -43,5 +39,5 @@ $wrapper_attributes = get_block_wrapper_attributes( $atts );
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>
-	<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+	<?php echo wp_kses_post( $content ); ?>
 </div>
