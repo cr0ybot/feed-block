@@ -36,10 +36,11 @@ if ( empty( $img_url) && empty( $attributes['placeholderURL'] ) ) {
 }
 
 $atts = array();
-if ( empty( $image_url ) ) {
-	$image_url                = $attributes['placeholderURL'];
+if ( empty( $img_url ) ) {
+	$img_url                = $attributes['placeholderURL'];
 	$atts['data-placeholder'] = 'true';
 }
+
 if ( $custom_tagname ) {
 	$atts['data-feed-tag'] = $custom_tagname;
 }
@@ -76,14 +77,14 @@ foreach ( $img_atts as $name => $value ) {
 	$img_atts_html .= " $name=" . '"' . $value . '"';
 }
 
-$item_image = sprintf( '<img src="%1$s" %2$s />', esc_url( $image_url ), $img_atts_html );
+$item_image = sprintf( '<img src="%1$s" %2$s />', esc_url( $img_url ), $img_atts_html );
 
 if ( $is_link ) {
 	$rel        = ! empty( $block->context['rel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/rel'] ) . '"' : '';
 	$height     = ! empty( $attributes['height'] ) ? 'style="' . esc_attr( safecss_filter_attr( 'height:' . $attributes['height'] ) ) . '"' : '';
 	$item_image = sprintf(
 		'<a href="%1$s" target="%2$s" %3$s %4$s>%5$s%6$s</a>',
-		esc_url( $image_url ),
+		esc_url( $img_url ),
 		esc_attr( $block->context['feed-block/linkTarget'] ),
 		$rel,
 		$height,
