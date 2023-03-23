@@ -185,6 +185,7 @@ export default function Edit( {
 						}
 						selected={ customTag }
 					/>
+					{ /*
 					<ToggleControl
 						label={ __(
 							'Use tag contents as image URL',
@@ -201,6 +202,7 @@ export default function Edit( {
 							} );
 						} }
 					/>
+					*/ }
 				</PanelBody>
 				<PanelBody title={ __( 'Link Settings', 'feed-block' ) }>
 					<ToggleControl
@@ -333,7 +335,7 @@ export default function Edit( {
 			<figure { ...blockProps }>
 				<img
 					className={ borderProps.className }
-					src={ url }
+					src={ image }
 					alt=""
 					style={ imageStyles }
 				/>
