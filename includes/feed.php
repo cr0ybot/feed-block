@@ -119,19 +119,25 @@ function get_feed( $url ) {
 				}
 			}
 
-			// Find the first image in the content.
+			// Find the primary image.
 			// TODO: handle enclosures?
 			$image = false;
-			$dom   = new \DOMDocument();
+
+			// Check for itunes:image.
+			$itunes_image = $feed_item->get_item_tags( SIMPLEPIE_NAMESPACE_ITUNES, 'image' );
+			if ( ! empty( $itunes_image ) ) {
+				$image = $itunes_image[0]['attribs']['']['href'];
+			}
+
+			// Parse and strip images from content, grab first image if needed.
+			$dom = new \DOMDocument();
 			// Must convert encoding, or otherwise will be interpreted as ISO-8859-1 https://stackoverflow.com/a/28502287/900971
 			$dom->loadHTML( mb_convert_encoding( $feed_item->get_content(), 'HTML-ENTITIES', $feed->get_encoding() ?? 'UTF-8' ) );
 			$images = $dom->getElementsByTagName( 'img' );
 			if ( $images->length ) {
-				$image = $images->item( 0 )->getAttribute( 'src' );
-			}
-			if ( $image ) {
-				// Save img URL.
-				$item['image'] = $image;
+				if ( ! $image ) {
+					$image = $images->item( 0 )->getAttribute( 'src' );
+				}
 
 				// If an image is found, remove all img tags.
 				while ( $images->length > 0 ) {
@@ -141,6 +147,11 @@ function get_feed( $url ) {
 
 				// Add noimg value.
 				$item['content_html_noimg'] = preg_replace( '/<img[^>]+\>/i', '', $dom->saveHTML() );
+			}
+
+			// Save found img URL.
+			if ( $image ) {
+				$item['image'] = $image;
 			}
 
 			/**
