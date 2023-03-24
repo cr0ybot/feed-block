@@ -2,20 +2,29 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "feed-block/feed-item-content",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"title": "Feed Item Content",
 	"category": "widgets",
 	"description": "Displays the content of a feed item, similar to the Post Content block.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "content_html", "content_html_noimg", "content_text" ],
+	"usesContext": [
+		"feed-block/item/custom",
+		"feed-block/item/content_html",
+		"feed-block/item/content_html_noimg",
+		"feed-block/item/content_text"
+	],
 	"attributes": {
+		"customTag": {
+			"type": "array",
+			"default": []
+		},
 		"textAlign": {
 			"type": "string"
 		},
 		"contentType": {
 			"type": "string",
-			"default": "content_html",
-			"enum": [ "content_html", "content_html_noimg", "content_text" ]
+			"default": "text",
+			"enum": [ "text", "html", "htmlNoImg" ]
 		}
 	},
 	"supports": {

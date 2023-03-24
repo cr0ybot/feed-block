@@ -1,46 +1,34 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "feed-block/feed-item-custom",
+	"name": "feed-block/feed-item-date",
 	"version": "0.1.0",
-	"title": "Custom Feed Item",
+	"title": "Feed Item Date",
 	"category": "widgets",
-	"description": "Displays the content of custom namespaced tags within a feed item in a custom format.",
+	"description": "Displays a date from the feed item in a custom format.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "custom", "content_html_noimg", "content_text" ],
+	"usesContext": [
+		"feed-block/item/custom",
+		"feed-block/item/date_published",
+		"feed-block/item/date_modified"
+	],
 	"attributes": {
 		"textAlign": {
 			"type": "string"
 		},
-		"tag": {
+		"customTag": {
 			"type": "array",
-			"default": []
+			"default": [ "date_published" ]
 		},
-		"contentType": {
-			"type": "string",
-			"default": "text",
-			"enum": [
-				"text",
-				"html",
-				"html_noimg",
-				"datetime",
-				"image",
-				"link"
-			]
-		},
-		"constrainLength": {
+		"isLink": {
 			"type": "boolean",
 			"default": false
 		},
-		"textLength": {
-			"type": "number",
-			"default": 55
-		},
-		"dateInputFormat": {
+		"inputFormat": {
 			"type": "string",
 			"default": ""
 		},
-		"dateDisplayFormat": {
+		"displayFormat": {
 			"type": "string",
 			"default": ""
 		},
@@ -64,7 +52,6 @@
 				"width": true
 			}
 		},
-		"align": [ "wide", "full" ],
 		"color": {
 			"gradients": true,
 			"link": true,

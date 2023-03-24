@@ -122,3 +122,17 @@ function get_block_border_attributes( $attributes ) {
 	}
 	return $attributes;
 }
+
+/**
+ * Get a URL from an img tag in an HTML string.
+ */
+function get_img_url( $html, $encoding = 'UTF-8' ) {
+	$dom   = new \DOMDocument();
+	// Must convert encoding, or otherwise will be interpreted as ISO-8859-1 https://stackoverflow.com/a/28502287/900971
+	$dom->loadHTML( mb_convert_encoding( $html, 'HTML-ENTITIES', $encoding ) );
+	$images = $dom->getElementsByTagName( 'img' );
+	if ( $images->length ) {
+		return $images->item( 0 )->getAttribute( 'src' );
+	}
+	return '';
+}

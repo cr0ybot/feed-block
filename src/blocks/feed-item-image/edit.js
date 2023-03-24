@@ -25,9 +25,13 @@ import {
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+import { isURL } from '@wordpress/url';
+
+import CustomTagSelect from '../../common/components/custom-tag-select';
 
 import DimensionControls from './dimension-controls';
 import Overlay from './overlay';
+import DOMPurify from 'dompurify';
 
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
@@ -39,13 +43,34 @@ const instructions = (
 	</p>
 );
 
-function ImageDisplay( {
+// Find the first src URL in a given arbitrary HTML string.
+function getImgURL( html ) {
+	// First, strip all except img tags.
+	const strippedHTML = DOMPurify.sanitize( html, {
+		ALLOWED_TAGS: [ 'img' ],
+	} );
+	// Then, find the first img tag's src attribute.
+	const imgs = new DOMParser()
+		.parseFromString( strippedHTML, 'text/html' )
+		.getElementsByTagName( 'img' );
+	return imgs.length ? imgs[ 0 ].src : '';
+}
+
+export default function Edit( {
 	clientId,
 	attributes,
 	setAttributes,
-	context: { image, url, rel, linkTarget },
+	context: {
+		'feed-block/item/custom': custom,
+		'feed-block/item/image': image,
+		'feed-block/item/url': url,
+		'feed-block/itemLinkRel': rel,
+		'feed-block/itemLinkTarget': linkTarget,
+	},
 } ) {
 	const {
+		customTag,
+		urlFromContent,
 		isLink,
 		aspectRatio,
 		height,
@@ -55,14 +80,34 @@ function ImageDisplay( {
 		placeholderId,
 		placeholderSizeSlug,
 	} = attributes;
+
+	// Set up block props.
+	const atts = {};
+	const customTagname = customTag.length === 2 ? customTag[ 1 ] : false;
+	if ( customTagname ) {
+		atts[ 'data-feed-tag' ] = customTagname;
+	}
 	const blockProps = useBlockProps( {
 		style: {
 			width,
 			height,
 			aspectRatio,
 		},
+		...atts,
 	} );
 	const borderProps = useBorderProps( attributes );
+
+	// Determine content (URL).
+	const customContent =
+		customTag.length === 2
+			? custom[ customTag[ 0 ] ][ customTag[ 1 ] ]
+			: false;
+	const content = customContent
+		? urlFromContent
+			? customContent
+			: getImgURL( customContent )
+		: image;
+	const imgURL = isURL( content ) ? content : '';
 
 	const media = useSelect(
 		( select ) => {
@@ -84,12 +129,12 @@ function ImageDisplay( {
 		( { name, slug } ) => ( { value: slug, label: name } )
 	);
 
-	const onUpdatePlaceholder = ( image ) => {
-		if ( image ) {
-			//const newURL = get( image, [ 'media_details', 'sizes', 'full', 'source_url' ] );
+	const onUpdatePlaceholder = ( placeholder ) => {
+		if ( placeholder ) {
+			//const newURL = get( placeholder, [ 'media_details', 'sizes', 'full', 'source_url' ] );
 			setAttributes( {
-				placeholderURL: image.url,
-				placeholderId: image.id,
+				placeholderURL: placeholder.url,
+				placeholderId: placeholder.id,
 			} );
 		} else {
 			setAttributes( {
@@ -99,11 +144,13 @@ function ImageDisplay( {
 		}
 	};
 
+	const hasAspectRatio = aspectRatio && aspectRatio !== 'auto';
+
 	const imageStyles = {
 		...borderProps.style,
-		height: ( !! aspectRatio && '100%' ) || height,
-		width: !! aspectRatio && '100%',
-		objectFit: !! ( height || aspectRatio ) && scale,
+		height: ( hasAspectRatio && '100%' ) || height,
+		width: hasAspectRatio && '100%',
+		objectFit: !! ( height || hasAspectRatio ) && scale,
 	};
 
 	const ItemPlaceholder = ( props ) => {
@@ -130,6 +177,33 @@ function ImageDisplay( {
 				setAttributes={ setAttributes }
 			/>
 			<InspectorControls>
+				<PanelBody title={ __( 'Content Settings', 'feed-block' ) }>
+					<CustomTagSelect
+						custom={ custom }
+						onChange={ ( newCustomTag ) =>
+							setAttributes( { customTag: newCustomTag } )
+						}
+						selected={ customTag }
+					/>
+					{ /*
+					<ToggleControl
+						label={ __(
+							'Use tag contents as image URL',
+							'feed-block'
+						) }
+						description={ __(
+							'If checked, the full text within the tag will be used as the image URL.',
+							'feed-block'
+						) }
+						checked={ urlFromContent }
+						onChange={ ( nextUrlFromContent ) => {
+							setAttributes( {
+								urlFromContent: nextUrlFromContent,
+							} );
+						} }
+					/>
+					*/ }
+				</PanelBody>
 				<PanelBody title={ __( 'Link Settings', 'feed-block' ) }>
 					<ToggleControl
 						label={ __( 'Make image a link', 'feed-block' ) }
@@ -217,21 +291,32 @@ function ImageDisplay( {
 		</>
 	);
 
-	if ( ! image || image === '' ) {
+	if ( ! imgURL || imgURL === '' ) {
 		return (
 			<>
 				{ controls }
 				<div { ...blockProps }>
 					<ItemPlaceholder
 						preview={
-							placeholderURL ? (
-								<img
-									className={ borderProps.className }
-									src={ placeholderURL }
-									alt=""
-									style={ imageStyles }
-								/>
-							) : undefined
+							<>
+								{ placeholderURL && (
+									<img
+										className={ borderProps.className }
+										src={ placeholderURL }
+										alt=""
+										style={ imageStyles }
+									/>
+								) }
+								{ content !== '' && imgURL === '' && (
+									<span className="url-not-valid">
+										{ __(
+											'Not a valid URL:',
+											'feed-block'
+										) }{ ' ' }
+										{ content }
+									</span>
+								) }
+							</>
 						}
 					/>
 					<Overlay
@@ -262,41 +347,4 @@ function ImageDisplay( {
 			</figure>
 		</>
 	);
-}
-
-export default function Edit( props ) {
-	const {
-		clientId,
-		attributes,
-		setAttributes,
-		context: { image },
-	} = props;
-	const blockProps = useBlockProps();
-	const borderProps = useBorderProps( attributes );
-
-	const { placeholderURL, placeholderId } = attributes;
-
-	/*
-	if ( ! image || image === '' ) {
-		return (
-			<div { ...blockProps }>
-				<Placeholder
-					className={ classnames(
-						'block-editor-media-placeholder',
-						borderProps.className
-					) }
-					withIllustration={ true }
-					style={ borderProps.style }
-				/>
-				<Overlay
-					attributes={ attributes }
-					setAttributes={ setAttributes }
-					clientId={ clientId }
-				/>
-			</div>
-		);
-	}
-	*/
-
-	return <ImageDisplay { ...props } />;
 }

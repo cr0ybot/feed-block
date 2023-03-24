@@ -3,8 +3,8 @@
  */
 
 import classnames from 'classnames';
+import DOMPurify from 'dompurify';
 
-import { unescape } from 'lodash';
 import {
 	AlignmentControl,
 	BlockControls,
@@ -12,24 +12,52 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { ToggleControl, PanelBody } from '@wordpress/components';
+import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
+
+import CustomTagSelect from '../../common/components/custom-tag-select';
 
 import HeadingLevelDropdown from './heading-level-dropdown';
 
 export default function Edit( {
-	attributes: { level, textAlign, isLink },
+	attributes: { customTag, level, textAlign, isLink },
 	setAttributes,
-	context: { title, url, rel, linkTarget },
+	context: {
+		'feed-block/item/custom': custom,
+		'feed-block/item/title': title,
+		'feed-block/item/url': url,
+		'feed-block/itemLinkRel': rel,
+		'feed-block/itemLinkTarget': linkTarget,
+	},
 } ) {
 	const Tag = 0 === level ? 'p' : `h${ level }`;
-	const blockProps = useBlockProps( {
+
+	// Set up block props.
+	const atts = {
 		className: classnames( {
 			[ `has-text-align-${ textAlign }` ]: textAlign,
 		} ),
-	} );
-	const titleContent =
-		title && title !== '' ? unescape( title ) : __( 'Feed Item Title' );
-	let titleElement = <Tag { ...blockProps }>{ titleContent }</Tag>;
+	};
+	const customTagname = customTag.length === 2 ? customTag[ 1 ] : false;
+	if ( customTagname ) {
+		atts[ 'data-feed-tag' ] = customTagname;
+	}
+	const blockProps = useBlockProps( atts );
+
+	// Set up title content.
+	const customContent =
+		customTag.length === 2
+			? custom[ customTag[ 0 ] ][ customTag[ 1 ] ]
+			: title;
+	const content =
+		customContent && customContent !== ''
+			? decodeEntities(
+					DOMPurify.sanitize( customContent, {
+						ALLOWED_TAGS: [],
+					} )
+			  )
+			: __( '<Feed Item Title>' );
+	let titleElement = <Tag { ...blockProps }>{ content }</Tag>;
 	if ( isLink && url ) {
 		titleElement = (
 			<Tag { ...blockProps }>
@@ -39,7 +67,7 @@ export default function Edit( {
 					target={ linkTarget }
 					onClick={ ( event ) => event.preventDefault() }
 				>
-					{ titleContent }
+					{ content }
 				</a>
 			</Tag>
 		);
@@ -62,6 +90,15 @@ export default function Edit( {
 				/>
 			</BlockControls>
 			<InspectorControls>
+				<PanelBody title={ __( 'Content Settings', 'feed-block' ) }>
+					<CustomTagSelect
+						custom={ custom }
+						onChange={ ( newCustomTag ) =>
+							setAttributes( { customTag: newCustomTag } )
+						}
+						selected={ customTag }
+					/>
+				</PanelBody>
 				<PanelBody title={ __( 'Link Settings', 'feed-block' ) }>
 					<ToggleControl
 						label={ __( 'Make title a link', 'feed-block' ) }

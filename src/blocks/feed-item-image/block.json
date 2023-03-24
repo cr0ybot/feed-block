@@ -2,13 +2,27 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "feed-block/feed-item-image",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"title": "Feed Item Image",
 	"category": "widgets",
 	"description": "Displays the first image from the feed item, similar to the Post Featured Image block.",
 	"ancestor": [ "feed-block/feed-item-template" ],
-	"usesContext": [ "image", "url", "rel", "linkTarget" ],
+	"usesContext": [
+		"feed-block/item/custom",
+		"feed-block/item/image",
+		"feed-block/item/url",
+		"feed-block/itemLinkRel",
+		"feed-block/itemLinkTarget"
+	],
 	"attributes": {
+		"customTag": {
+			"type": "array",
+			"default": []
+		},
+		"urlFromContent": {
+			"type": "boolean",
+			"default": false
+		},
 		"isLink": {
 			"type": "boolean",
 			"default": false

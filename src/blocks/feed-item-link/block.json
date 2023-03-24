@@ -1,58 +1,52 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "feed-block/feed-item-summary",
-	"version": "0.2.0",
-	"title": "Feed Item Summary",
+	"name": "feed-block/feed-item-link",
+	"version": "0.1.0",
+	"title": "Feed Item Link",
 	"category": "widgets",
-	"description": "Displays the summary of a feed item, similar to the Post Excerpt block.",
+	"description": "Create a link or button that links to the feed item's URL.",
 	"ancestor": [ "feed-block/feed-item-template" ],
 	"usesContext": [
-		"feed-block/item/custom",
-		"feed-block/item/summary",
 		"feed-block/item/url",
 		"feed-block/itemLinkRel",
 		"feed-block/itemLinkTarget"
 	],
 	"attributes": {
-		"customTag": {
-			"type": "array",
-			"default": []
-		},
-		"textAlign": {
-			"type": "string"
-		},
-		"constrainLength": {
-			"type": "boolean",
-			"default": false
-		},
-		"summaryLength": {
-			"type": "integer",
-			"default": 55
-		},
-		"moreText": {
-			"type": "string"
-		},
-		"showMore": {
-			"type": "boolean",
-			"default": true
-		},
-		"showMoreOnNewLine": {
-			"type": "boolean",
-			"default": false
+		"text": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
-		"html": false,
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalSkipSerialization": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		},
+		"align": true,
+		"alignWide": false,
 		"color": {
 			"gradients": true,
-			"link": true,
 			"__experimentalDefaultControls": {
 				"background": true,
 				"text": true,
 				"link": true
 			}
 		},
+		"dimensions": {
+			"minHeight": true
+		},
+		"html": false,
+		"reusable": false,
 		"spacing": {
 			"margin": true,
 			"padding": true
@@ -67,7 +61,8 @@
 			"__experimentalTextDecoration": true,
 			"__experimentalLetterSpacing": true,
 			"__experimentalDefaultControls": {
-				"fontSize": true
+				"fontSize": true,
+				"fontAppearance": true
 			}
 		}
 	},

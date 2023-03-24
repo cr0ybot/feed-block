@@ -23,7 +23,7 @@ const TEMPLATE = [
 
 function FeedItemTemplateInnerBlocks() {
 	const innerBlocksProps = useInnerBlocksProps(
-		{ className: 'wp-block-post' },
+		{ className: 'wp-block-feed-block-feed-item' },
 		{ template: TEMPLATE }
 	);
 	return <li { ...innerBlocksProps } />;
@@ -78,9 +78,12 @@ const MemoizedFeedItemTemplateBlockPreview = memo(
 export default function Edit( {
 	clientId,
 	context: {
-		feedURL,
-		itemsToShow,
-		displayLayout: { type: layoutType = 'flex', columns = 1 } = {},
+		'feed-block/feedURL': feedURL,
+		'feed-block/itemsToShow': itemsToShow,
+		'feed-block/displayLayout': {
+			type: layoutType = 'flex',
+			columns = 1,
+		} = {},
 	},
 } ) {
 	const [ activeBlockContextId, setActiveBlockContextId ] = useState();
@@ -121,10 +124,25 @@ export default function Edit( {
 		fetchFeed();
 	}, [ feedURL ] );
 
-	const itemContexts = useMemo(
-		() => feed?.items?.slice( 0, itemsToShow ),
-		[ feed, itemsToShow ]
-	);
+	const itemContexts = useMemo( () => {
+		const items = feed?.items?.slice( 0, itemsToShow );
+		if ( ! items?.length ) {
+			return [];
+		}
+
+		// Namespace each item's properties with `feed-block/item/`.
+		return items.map( ( item ) => {
+			const result = Object.fromEntries(
+				Object.entries( item ).map( ( [ key, value ] ) => [
+					`feed-block/item/${ key }`,
+					value,
+				] )
+			);
+			// We need the item's ID for the key prop.
+			result.id = item.id;
+			return result;
+		} );
+	}, [ feed, itemsToShow ] );
 	const hasLayoutFlex = layoutType === 'flex' && columns > 1;
 	const blockProps = useBlockProps( {
 		className: classnames( {
@@ -133,7 +151,7 @@ export default function Edit( {
 		} ),
 	} );
 
-	if ( ! feed?.items?.length ) {
+	if ( ! isLoading && ! feed?.items?.length ) {
 		return <p { ...blockProps }>{ __( 'No items found.' ) }</p>;
 	}
 
@@ -143,23 +161,25 @@ export default function Edit( {
 		</Placeholder>
 	) : (
 		<ul { ...blockProps }>
-			{ itemContexts.map( ( item, index ) => (
-				<BlockContextProvider key={ item.id } value={ item }>
-					{ item.id ===
-					( activeBlockContextId || itemContexts[ 0 ]?.id ) ? (
-						<FeedItemTemplateInnerBlocks />
-					) : null }
-					<MemoizedFeedItemTemplateBlockPreview
-						blocks={ blocks }
-						blockContextId={ item.id }
-						setActiveBlockContextId={ setActiveBlockContextId }
-						isHidden={
-							item.id ===
-							( activeBlockContextId || itemContexts[ 0 ]?.id )
-						}
-					/>
-				</BlockContextProvider>
-			) ) }
+			{ itemContexts &&
+				itemContexts.map( ( item ) => (
+					<BlockContextProvider key={ item.id } value={ item }>
+						{ item.id ===
+						( activeBlockContextId || itemContexts[ 0 ]?.id ) ? (
+							<FeedItemTemplateInnerBlocks />
+						) : null }
+						<MemoizedFeedItemTemplateBlockPreview
+							blocks={ blocks }
+							blockContextId={ item.id }
+							setActiveBlockContextId={ setActiveBlockContextId }
+							isHidden={
+								item.id ===
+								( activeBlockContextId ||
+									itemContexts[ 0 ]?.id )
+							}
+						/>
+					</BlockContextProvider>
+				) ) }
 		</ul>
 	);
 }

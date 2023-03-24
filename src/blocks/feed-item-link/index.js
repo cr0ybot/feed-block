@@ -1,5 +1,5 @@
 /**
- * Block: feed-item-custom.
+ * Block: feed-item-link.
  */
 
 import { registerBlockType } from '@wordpress/blocks';

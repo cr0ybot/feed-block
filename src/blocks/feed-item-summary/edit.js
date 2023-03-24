@@ -3,8 +3,8 @@
  */
 
 import classnames from 'classnames';
+import DOMPurify from 'dompurify';
 
-import { unescape } from 'lodash';
 import {
 	AlignmentToolbar,
 	BlockControls,
@@ -13,12 +13,15 @@ import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
+import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
 
+import CustomTagSelect from '../../common/components/custom-tag-select';
 import { trimWords } from '../../common/utils';
 
 export default function Edit( {
 	attributes: {
+		customTag,
 		textAlign,
 		constrainLength,
 		summaryLength,
@@ -27,13 +30,22 @@ export default function Edit( {
 		showMoreOnNewLine,
 	},
 	setAttributes,
-	context: { summary },
+	context: {
+		'feed-block/item/custom': custom,
+		'feed-block/item/summary': summary,
+	},
 } ) {
-	const blockProps = useBlockProps( {
+	// Set up block props.
+	const atts = {
 		className: classnames( {
 			[ `has-text-align-${ textAlign }` ]: textAlign,
 		} ),
-	} );
+	};
+	const customTagname = customTag.length === 2 ? customTag[ 1 ] : false;
+	if ( customTagname ) {
+		atts[ 'data-feed-tag' ] = customTagname;
+	}
+	const blockProps = useBlockProps( atts );
 
 	const readMoreLink = (
 		<RichText
@@ -49,13 +61,21 @@ export default function Edit( {
 		/>
 	);
 
-	const content = constrainLength
-		? trimWords( summary, summaryLength )
-		: summary;
-	let summaryContent = __( '(Feed Item Summary)', 'feed-block' );
-	if ( content && content !== '' ) {
-		summaryContent = unescape( content );
-	}
+	const customContent =
+		customTag.length === 2
+			? custom[ customTag[ 0 ] ][ customTag[ 1 ] ]
+			: summary;
+	const untrimmedContent =
+		customContent && customContent !== ''
+			? decodeEntities(
+					DOMPurify.sanitize( customContent, {
+						ALLOWED_TAGS: [],
+					} )
+			  )
+			: __( '<Feed Item Summary>', 'feed-block' );
+	const summaryContent = constrainLength
+		? trimWords( untrimmedContent, summaryLength )
+		: untrimmedContent;
 
 	return (
 		<>
@@ -68,6 +88,15 @@ export default function Edit( {
 				/>
 			</BlockControls>
 			<InspectorControls>
+				<PanelBody title={ __( 'Content Settings', 'feed-block' ) }>
+					<CustomTagSelect
+						custom={ custom }
+						onChange={ ( newCustomTag ) =>
+							setAttributes( { customTag: newCustomTag } )
+						}
+						selected={ customTag }
+					/>
+				</PanelBody>
 				<PanelBody title={ __( 'Summary Settings' ) }>
 					<ToggleControl
 						label={ __( 'Show read more link' ) }
@@ -92,7 +121,7 @@ export default function Edit( {
 						/>
 					) }
 					<ToggleControl
-						label={ __( 'Constrain summaryLength' ) }
+						label={ __( 'Constrain summary length' ) }
 						checked={ constrainLength }
 						onChange={ () =>
 							setAttributes( {
@@ -101,7 +130,6 @@ export default function Edit( {
 						}
 					/>
 					{ constrainLength && (
-						// Note: had to save as string for the control to work???
 						<RangeControl
 							label={ __( 'Length' ) }
 							value={ summaryLength }

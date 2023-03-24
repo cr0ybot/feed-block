@@ -2,7 +2,7 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
 	"name": "feed-block/feed",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"title": "Feed Loop",
 	"category": "widgets",
 	"icon": "rss",
@@ -27,22 +27,21 @@
 			"type": "string",
 			"default": "div"
 		},
-		"rel": {
+		"itemLinkRel": {
 			"type": "string",
-			"attribute": "rel",
 			"default": "nofollow noopener noreferrer"
 		},
-		"linkTarget": {
+		"itemLinkTarget": {
 			"type": "string",
 			"default": "_blank"
 		}
 	},
 	"providesContext": {
-		"feedURL": "feedURL",
-		"itemsToShow": "itemsToShow",
-		"displayLayout": "displayLayout",
-		"rel": "rel",
-		"linkTarget": "linkTarget"
+		"feed-block/feedURL": "feedURL",
+		"feed-block/itemsToShow": "itemsToShow",
+		"feed-block/displayLayout": "displayLayout",
+		"feed-block/itemLinkRel": "itemLinkRel",
+		"feed-block/itemLinkTarget": "itemLinkTarget"
 	},
 	"supports": {
 		"align": [ "wide", "full" ],
