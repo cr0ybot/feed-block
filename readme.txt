@@ -42,6 +42,18 @@ Make sure your user account has the `unfiltered_html` capability, often reserved
 
 == Changelog ==
 
+= 2023-03-23 0.4.0 =
+* Breaking Change: Removed Custom Feed Item block in favor of pulling custom tag content into each available block
+* Feature: Custom content in Feed Item Title block
+* Feature: Custom content in Feed Item Summary block
+* Feature: Custom content in Feed Item Content block
+* Feature: Custom content in Feed Item Image block
+* Feature: Feed Item Date block
+* Feature: Feed Item Link block
+* Feature: itunes:image tag checked for default image
+* Fix: Feed items with links not inheriting Feed block context for rel/target values
+* Fix: Better escaped output
+
 = 2023-03-17 0.3.0 =
 * Rename again to feed-block
 * Feature: No Results block
