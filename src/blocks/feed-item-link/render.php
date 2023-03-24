@@ -15,8 +15,6 @@ if ( empty( $text ) ) {
 	return;
 }
 
-error_log(print_r($block->context, true));
-
 $atts = get_block_border_attributes( $attributes );
 
 $rel = ! empty( $block->context['feed-block/itemLinkRel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/itemLinkRel'] ) . '"' : '';

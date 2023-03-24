@@ -18,18 +18,17 @@ export default function Edit( { attributes, setAttributes } ) {
 	} );
 
 	return (
-		<div { ...blockProps }>
-			<RichText
-				tagName="a"
-				className="wp-block-feed-block-feed-item-link__link"
-				value={ text }
-				onChange={ ( nextText ) => {
-					setAttributes( { text: nextText } );
-				} }
-				aria-label={ __( 'Feed item link text', 'feed-block' ) }
-				placeholder={ __( 'Add feed item link text', 'feed-block' ) }
-				withoutInteractiveFormatting={ true }
-			/>
-		</div>
+		<RichText
+			tagName="a"
+			className="wp-block-feed-block-feed-item-link"
+			value={ text }
+			onChange={ ( nextText ) => {
+				setAttributes( { text: nextText } );
+			} }
+			aria-label={ __( 'Feed item link text', 'feed-block' ) }
+			placeholder={ __( 'Add feed item link text', 'feed-block' ) }
+			withoutInteractiveFormatting={ true }
+			{ ...blockProps }
+		/>
 	);
 }

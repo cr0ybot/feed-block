@@ -14,8 +14,7 @@
 	],
 	"attributes": {
 		"text": {
-			"type": "string",
-			"default": ""
+			"type": "string"
 		}
 	},
 	"supports": {
@@ -32,14 +31,13 @@
 				"width": true
 			}
 		},
-		"align": true,
-		"alignWide": false,
 		"color": {
+			"background": true,
 			"gradients": true,
+			"text": true,
 			"__experimentalDefaultControls": {
 				"background": true,
-				"text": true,
-				"link": true
+				"text": true
 			}
 		},
 		"dimensions": {
