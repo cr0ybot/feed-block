@@ -16,7 +16,7 @@ $content = wp_strip_all_tags(
 );
 $tagname = 'h2';
 if ( isset( $attributes['level'] ) ) {
-	$name = 0 === $attributes['level'] ? 'p' : 'h' . $attributes['level'];
+	$tagname = 0 === $attributes['level'] ? 'p' : 'h' . $attributes['level'];
 }
 
 $align_class_name = empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}";

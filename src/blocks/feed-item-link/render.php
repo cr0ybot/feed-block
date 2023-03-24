@@ -27,8 +27,6 @@ if ( ! empty( $target ) ) {
 	$atts['target'] = $target;
 }
 
-error_log(print_r($atts, true));
-
 printf(
 	'<a href="%1$s" %2$s>%3$s</a>',
 	esc_url( $block->context['feed-block/item/url'] ),
