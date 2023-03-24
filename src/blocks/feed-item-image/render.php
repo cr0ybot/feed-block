@@ -80,12 +80,12 @@ foreach ( $img_atts as $name => $value ) {
 $item_image = sprintf( '<img src="%1$s" %2$s />', esc_url( $img_url ), $img_atts_html );
 
 if ( $is_link ) {
-	$rel        = ! empty( $block->context['feed-block/rel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/rel'] ) . '"' : '';
+	$rel        = ! empty( $block->context['feed-block/itemLinkRel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/itemLinkRel'] ) . '"' : '';
 	$height     = ! empty( $attributes['height'] ) ? 'style="' . esc_attr( safecss_filter_attr( 'height:' . $attributes['height'] ) ) . '"' : '';
 	$item_image = sprintf(
 		'<a href="%1$s" target="%2$s" %3$s %4$s>%5$s%6$s</a>',
 		esc_url( $img_url ),
-		esc_attr( $block->context['feed-block/linkTarget'] ),
+		esc_attr( $block->context['feed-block/itemLinkTarget'] ),
 		$rel,
 		$height,
 		$item_image,

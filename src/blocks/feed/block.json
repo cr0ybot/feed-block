@@ -27,12 +27,11 @@
 			"type": "string",
 			"default": "div"
 		},
-		"rel": {
+		"itemLinkRel": {
 			"type": "string",
-			"attribute": "rel",
 			"default": "nofollow noopener noreferrer"
 		},
-		"linkTarget": {
+		"itemLinkTarget": {
 			"type": "string",
 			"default": "_blank"
 		}
@@ -41,8 +40,8 @@
 		"feed-block/feedURL": "feedURL",
 		"feed-block/itemsToShow": "itemsToShow",
 		"feed-block/displayLayout": "displayLayout",
-		"feed-block/rel": "rel",
-		"feed-block/linkTarget": "linkTarget"
+		"feed-block/itemLinkRel": "itemLinkRel",
+		"feed-block/itemLinkTarget": "itemLinkTarget"
 	},
 	"supports": {
 		"align": [ "wide", "full" ],

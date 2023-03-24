@@ -18,11 +18,11 @@ if ( $attributes['constrainLength'] ) {
 
 $readMoreLink = '';
 if ( $attributes['showMore'] && ! empty( $attributes['moreText'] ) ) {
-	$rel          = ! empty( $block->context['feed-block/rel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/rel'] ) . '"' : '';
+	$rel          = ! empty( $block->context['feed-block/itemLinkRel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/itemLinkRel'] ) . '"' : '';
 	$readMoreLink = sprintf(
 		'<a href="%1$s" class="wp-block-feed-block-feed-item-summary__more-link" target="%2$s" %3$s>%4$s</a>',
 		esc_url( $block->context['feed-block/item/url'] ),
-		esc_attr( $block->context['feed-block/linkTarget'] ?? '_blank' ),
+		esc_attr( $block->context['feed-block/itemLinkTarget'] ?? '_blank' ),
 		$rel,
 		esc_html( $attributes['moreText'] )
 	);

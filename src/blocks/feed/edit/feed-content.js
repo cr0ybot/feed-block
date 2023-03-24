@@ -39,8 +39,8 @@ export default function FeedContent( {
 		displayLayout,
 		tagName: Tag = 'div',
 		layout = {},
-		rel,
-		linkTarget,
+		itemLinkRel,
+		itemLinkTarget,
 	} = attributes;
 
 	const { themeSupportsLayout } = useSelect( ( select ) => {
@@ -136,18 +136,20 @@ export default function FeedContent( {
 					</p>
 					<ToggleControl
 						label={ __( 'Open in new tab' ) }
-						checked={ linkTarget === '_blank' }
+						checked={ itemLinkTarget === '_blank' }
 						onChange={ ( nextIsNewTab ) => {
 							setAttributes( {
-								linkTarget: nextIsNewTab ? '_blank' : '_self',
+								itemLinkTarget: nextIsNewTab
+									? '_blank'
+									: '_self',
 							} );
 						} }
 					/>
 					<TextControl
 						label={ __( 'Link rel' ) }
-						value={ rel }
+						value={ itemLinkRel }
 						onChange={ ( nextRel ) => {
-							setAttributes( { rel: nextRel } );
+							setAttributes( { itemLinkRel: nextRel } );
 						} }
 					/>
 				</PanelBody>

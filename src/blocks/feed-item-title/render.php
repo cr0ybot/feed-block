@@ -22,11 +22,11 @@ if ( isset( $attributes['level'] ) ) {
 $align_class_name = empty( $attributes['textAlign'] ) ? '' : "has-text-align-{$attributes['textAlign']}";
 
 if ( isset( $attributes['isLink'] ) && $attributes['isLink'] && isset( $block->context['feed-block/item/url'] ) ) {
-	$rel     = ! empty( $block->context['feed-block/rel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/rel'] ) . '"' : '';
+	$rel     = ! empty( $block->context['feed-block/itemLinkRel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/itemLinkRel'] ) . '"' : '';
 	$content = sprintf(
 		'<a href="%1$s" target="%2$s" %3$s>%4$s</a>',
 		esc_url( $block->context['feed-block/item/url'] ),
-		esc_attr( $block->context['feed-block/linkTarget'] ?? '_blank' ),
+		esc_attr( $block->context['feed-block/itemLinkTarget'] ?? '_blank' ),
 		$rel,
 		esc_html( $block->context['feed-block/item/title'] )
 	);

@@ -11,8 +11,8 @@
 		"feed-block/item/custom",
 		"feed-block/item/summary",
 		"feed-block/item/url",
-		"feed-block/rel",
-		"feed-block/linkTarget"
+		"feed-block/itemLinkRel",
+		"feed-block/itemLinkTarget"
 	],
 	"attributes": {
 		"customTag": {

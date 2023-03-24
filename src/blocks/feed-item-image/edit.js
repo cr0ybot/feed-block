@@ -64,8 +64,8 @@ export default function Edit( {
 		'feed-block/item/custom': custom,
 		'feed-block/item/image': image,
 		'feed-block/item/url': url,
-		'feed-block/rel': rel,
-		'feed-block/linkTarget': linkTarget,
+		'feed-block/itemLinkRel': rel,
+		'feed-block/itemLinkTarget': linkTarget,
 	},
 } ) {
 	const {

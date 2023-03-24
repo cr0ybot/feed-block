@@ -10,7 +10,9 @@
 	"usesContext": [
 		"feed-block/feedURL",
 		"feed-block/itemsToShow",
-		"feed-block/displayLayout"
+		"feed-block/displayLayout",
+		"feed-block/itemLinkRel",
+		"feed-block/itemLinkTarget"
 	],
 	"supports": {
 		"html": false

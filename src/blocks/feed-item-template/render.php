@@ -11,7 +11,6 @@ namespace FeedBlock\Blocks\FeedItemTemplate;
 
 use function FeedBlock\Feed\get_feed;
 
-
 $feed = get_feed( $block->context['feed-block/feedURL'] );
 
 if ( is_wp_error( $feed ) ) {
@@ -56,6 +55,16 @@ for ( $i = 0; $i < $block->context['feed-block/itemsToShow'] && $i < $item_count
 			array_keys( $item )
 		),
 		$item
+	);
+
+	// Provide all additional context from parent block.
+	$item = array_merge(
+		$item,
+		array(
+			'feed-block/feedURL' => $block->context['feed-block/feedURL'],
+			'feed-block/itemLinkRel' => $block->context['feed-block/itemLinkRel'],
+			'feed-block/itemLinkTarget' => $block->context['feed-block/itemLinkTarget'],
+		)
 	);
 
 	// Get an instance of the current Feed Item Template block.
