@@ -25,6 +25,8 @@ The Feed Loop Block comes with a number of blocks that can be used to display th
 * Feed Item Summary
 * Feed Item Content
 * Feed Item Image
+* Feed Item Date
+* Feed Item Link
 
 = Top-Level Feed Blocks =
 
@@ -41,6 +43,10 @@ Make sure your user account has the `unfiltered_html` capability, often reserved
 
 
 == Changelog ==
+
+= 2023-03-24 0.4.1 =
+* Fix: Feed Item Title not rendering the correct heading level on front-end
+* Fix: Use appropriate icon for Feed Item Link block
 
 = 2023-03-23 0.4.0 =
 * Breaking Change: Removed Custom Feed Item block in favor of pulling custom tag content into each available block
