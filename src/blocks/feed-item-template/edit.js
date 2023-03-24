@@ -116,7 +116,7 @@ export default function Edit( {
 				} ),
 			} );
 			const data = await response.json();
-			console.log( data );
+			//console.log( data );
 			setFeed( data?.data );
 			setIsLoading( false );
 		};
