@@ -44,6 +44,9 @@ Make sure your user account has the `unfiltered_html` capability, often reserved
 
 == Changelog ==
 
+= 2023-03-29 0.4.2 =
+* Fix: No Results blocks always rendering on front-end even if feed items are found
+
 = 2023-03-24 0.4.1 =
 * Fix: Feed Item Title not rendering the correct heading level on front-end
 * Fix: Use appropriate icon for Feed Item Link block
