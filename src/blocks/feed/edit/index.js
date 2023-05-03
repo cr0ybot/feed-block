@@ -6,8 +6,9 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 import { Button, Placeholder, TextControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-import { rss } from '@wordpress/icons';
 import { prependHTTP } from '@wordpress/url';
+
+import icon from '../../../icons/feed-block';
 
 import FeedContent from './feed-content';
 
@@ -30,7 +31,7 @@ export default function Edit( props ) {
 	if ( isEditing ) {
 		return (
 			<div { ...blockProps }>
-				<Placeholder icon={ rss } label="Feed Loop">
+				<Placeholder icon={ icon } label="Feed Loop">
 					<form
 						onSubmit={ onSubmitFeedURL }
 						className="wp-block-feed-block-feed__placeholder-form"
