@@ -46,14 +46,19 @@ export default function Edit( {
 		customTag.length === 2
 			? custom[ customTag[ 0 ] ][ customTag[ 1 ] ]
 			: false;
-	const content = customContent
-		? contentType === 'htmlNoImg'
-			? customContent.replace( /<img[^>]*>/g, '' )
-			: customContent
-		: context[ `feed-block/item/${ contentTypeMap[ contentType ] }` ];
+	console.log( { customContent } );
+	const content =
+		customContent !== false
+			? contentType === 'htmlNoImg'
+				? customContent.replace( /<img[^>]*>/g, '' )
+				: customContent
+			: context[ `feed-block/item/${ contentTypeMap[ contentType ] }` ];
 	let contentElement = (
 		<div { ...blockProps }>
-			{ __( '<Feed Item Content>', 'feed-block' ) }
+			{ __( '<Feed Item Content: %s>', 'feed-block' ).replace(
+				'%s',
+				customTagname ? customTag[ 1 ] : 'default'
+			) }
 		</div>
 	);
 	if ( content && content !== '' ) {

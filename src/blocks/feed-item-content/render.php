@@ -8,8 +8,8 @@
  */
 
 $contentTypeMap = array(
-	'text' => 'content_text',
-	'html' => 'content_html',
+	'text'      => 'content_text',
+	'html'      => 'content_html',
 	'htmlNoImg' => 'content_html_noimg',
 );
 
@@ -17,7 +17,7 @@ $custom_tag     = is_array( $attributes['customTag'] ) && count( $attributes['cu
 $custom_tagname = $custom_tag ? $custom_tag[1] : false;
 $custom_content = $custom_tag ? $block->context['feed-block/item/custom'][ $custom_tag[0] ][ $custom_tag[1] ] : false;
 
-$content = $custom_content
+$content = $custom_content !== false // Empty string is valid content.
 	? (
 		'htmlNoImg' === $attributes['contentType']
 			? preg_replace( '/<img[^>]*>/g', '', $custom_content )
