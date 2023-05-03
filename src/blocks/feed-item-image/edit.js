@@ -27,7 +27,7 @@ import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { isURL } from '@wordpress/url';
 
-import CustomTagSelect from '../../common/components/custom-tag-select';
+import CustomTagSelect from '../../components/custom-tag-select';
 
 import DimensionControls from './dimension-controls';
 import Overlay from './overlay';

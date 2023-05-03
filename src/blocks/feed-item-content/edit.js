@@ -15,7 +15,7 @@ import { PanelBody, SelectControl } from '@wordpress/components';
 import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
 
-import CustomTagSelect from '../../common/components/custom-tag-select';
+import CustomTagSelect from '../../components/custom-tag-select';
 
 const contentTypeMap = {
 	html: 'content_html',

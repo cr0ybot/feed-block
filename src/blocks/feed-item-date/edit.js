@@ -24,7 +24,7 @@ import { useEntityProp } from '@wordpress/core-data';
 import { format } from '@wordpress/date';
 import { __ } from '@wordpress/i18n';
 
-import CustomTagSelect from '../../common/components/custom-tag-select';
+import CustomTagSelect from '../../components/custom-tag-select';
 
 const fmt = new DateFormatter();
 
