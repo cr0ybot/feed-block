@@ -1,8 +1,8 @@
 === Feed Loop Block ===
 Contributors:      cr0ybot
 Tags:              block, rss, atom, feed
-Tested up to:      6.1
-Stable tag:        0.3.0
+Tested up to:      6.2
+Stable tag:        0.5.0
 License:           GPL-3.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -43,6 +43,10 @@ Make sure your user account has the `unfiltered_html` capability, often reserved
 
 
 == Changelog ==
+
+= 2023-05-03 0.5.0 =
+* Feature: Custom block icon
+* Fix: Feed Item Content now displays empty string instead of default description if custom tag is empty
 
 = 2023-03-29 0.4.2 =
 * Fix: No Results blocks always rendering on front-end even if feed items are found

@@ -3,9 +3,9 @@
  * Plugin Name:       Feed Loop Block
  * Plugin URI:        https://github.com/cr0ybot/feed-block
  * Description:       Advanced RSS & Atom feed block with configurable child blocks, similar to the Query Loop block.
- * Requires at least: 6.1
+ * Requires at least: 6.2
  * Requires PHP:      7.0
- * Version:           0.4.2
+ * Version:           0.5.0
  * Author:            Cory Hughart
  * Author URI:        https://coryhughart.com
  * License:           GPL-3.0-or-later
