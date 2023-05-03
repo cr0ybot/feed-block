@@ -16,8 +16,8 @@ import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
 import { decodeEntities } from '@wordpress/html-entities';
 import { __ } from '@wordpress/i18n';
 
-import CustomTagSelect from '../../common/components/custom-tag-select';
-import { trimWords } from '../../common/utils';
+import CustomTagSelect from '../../components/custom-tag-select';
+import { trimWords } from '../../utils/trim-words';
 
 export default function Edit( {
 	attributes: {
