@@ -131,8 +131,9 @@ function get_feed( $url ) {
 
 			// Parse and strip images from content, grab first image if needed.
 			$dom = new \DOMDocument();
-			// Must convert encoding, or otherwise will be interpreted as ISO-8859-1 https://stackoverflow.com/a/28502287/900971
-			$dom->loadHTML( mb_convert_encoding( $feed_item->get_content(), 'HTML-ENTITIES', $feed->get_encoding() ?? 'UTF-8' ) );
+			$content = $feed_item->get_content();
+			// Use XML encoding declaration for UTF-8 support and LIBXML_NOERROR to suppress HTML5 tag warnings.
+			$dom->loadHTML( '<?xml encoding="UTF-8">' . $content, LIBXML_NOERROR );
 			$images = $dom->getElementsByTagName( 'img' );
 			if ( $images->length ) {
 				if ( ! $image ) {
