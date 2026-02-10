@@ -51,7 +51,7 @@ $img_atts       = get_block_border_attributes( $attributes );
 $overlay_markup = get_block_feed_item_image_overlay_element_markup( $attributes );
 
 if ( $is_link ) {
-	$img_atts['alt'] = $block->context['feed-block/item/title'];
+	$img_atts['alt'] = $block->context['feed-block/item/title'] ?? '';
 }
 
 $extra_styles = '';
@@ -80,12 +80,13 @@ foreach ( $img_atts as $name => $value ) {
 $item_image = sprintf( '<img src="%1$s" %2$s />', esc_url( $img_url ), $img_atts_html );
 
 if ( $is_link ) {
+	$link_url   = $block->context['feed-block/item/url'] ?? '';
 	$rel        = ! empty( $block->context['feed-block/itemLinkRel'] ) ? 'rel="' . esc_attr( $block->context['feed-block/itemLinkRel'] ) . '"' : '';
 	$height     = ! empty( $attributes['height'] ) ? 'style="' . esc_attr( safecss_filter_attr( 'height:' . $attributes['height'] ) ) . '"' : '';
 	$item_image = sprintf(
 		'<a href="%1$s" target="%2$s" %3$s %4$s>%5$s%6$s</a>',
-		esc_url( $img_url ),
-		esc_attr( $block->context['feed-block/itemLinkTarget'] ),
+		esc_url( $link_url ),
+		esc_attr( $block->context['feed-block/itemLinkTarget'] ?? '_self' ),
 		$rel,
 		$height,
 		$item_image,

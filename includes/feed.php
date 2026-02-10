@@ -120,13 +120,23 @@ function get_feed( $url ) {
 			}
 
 			// Find the primary image.
-			// TODO: handle enclosures?
 			$image = false;
 
 			// Check for itunes:image.
 			$itunes_image = $feed_item->get_item_tags( SIMPLEPIE_NAMESPACE_ITUNES, 'image' );
 			if ( ! empty( $itunes_image ) ) {
 				$image = $itunes_image[0]['attribs']['']['href'];
+			}
+
+			// Check for enclosure with image type.
+			if ( ! $image ) {
+				$enclosure = $feed_item->get_enclosure();
+				if ( $enclosure ) {
+					$enclosure_type = $enclosure->get_type();
+					if ( $enclosure_type && strpos( $enclosure_type, 'image/' ) === 0 ) {
+						$image = $enclosure->get_link();
+					}
+				}
 			}
 
 			// Parse and strip images from content, grab first image if needed.
